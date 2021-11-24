@@ -22,11 +22,12 @@ class Performance(models.Model):
         validators.MinValueValidator(0.01),
         validators.DecimalValidator(decimal_places=2)
     ])
+    # TODO сделать жанр справочником
 
 
 class Hall(models.Model):
     number = models.CharField(max_length=32)
-    description = models.TextField
+    description = models.TextField()
 
 
 class Tier(models.Model):

@@ -17,6 +17,7 @@ class Employee(models.Model):
     position = models.CharField('Work position', max_length=50)
     date_of_birth = models.DateField('Date of birth')
     hiring_date = models.DateField('Hiring date')
+    # TODO разбить на должность и сотрудника
 
 
 class Role(models.Model):

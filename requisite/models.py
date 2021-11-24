@@ -29,4 +29,4 @@ class RequisiteHistory(models.Model):
 class RequisitePosterRole(models.Model):
     requisite_id = models.ForeignKey(Requisite, on_delete=models.CASCADE)
     poster_id = models.ForeignKey(performance.models.Poster, on_delete=models.CASCADE)
-    role_id = models.ForeignKey(Employees.models.Role, on_delete=models.CASCADE)
+    role_id = models.ForeignKey(Employees.models.Role, on_delete=models.SET_NULL)
