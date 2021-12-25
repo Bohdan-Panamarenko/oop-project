@@ -1,45 +1,45 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
 from .models import Performance, Rating, Genre, Hall, Tier, Poster
-from django.urls import reverse_lazy
-from django.db.models import Q
-from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView, TemplateView
-from django.views.generic.base import View
-# Create your views here.
 
 
 def main(request):
-    return render(request, "performance/main.html")
+    return render(request, 'performance/main.html')
 
 
 def performance(request):
-    performances = Performance.objects.order_by('-price')
+    performances = Performance.objects.all()
     return render(request, 'performance/performance.html', {'performances': performances})
 
 
-def performance_to_be(request):
-    return render(request, 'performance/performance_to_be.html')
+def sort_performance(request, pk):
+    performances = Performance.objects.all()
+    if pk == 1:
+        performances = performances.order_by('name')
+    elif pk == 2:
+        performances = performances.order_by('price')
+    elif pk == 3:
+        performances = performances.order_by('author')
+
+    return render(request, "performance/performance.html", {"performances": performances})
 
 
-def about(request):
-    return render(request, 'performance/about.html')
+def performance_on_going(request):
+    poster = Poster.objects.all()
+    print(poster[0].date)
+    return render(request, 'performance/performance_on_going.html', {'poster': poster})
 
 
-def contact(request):
-    return render(request, 'performance/contact.html')
+def sort_performance_on_going(request, pk):
+    posters = Poster.objects.all()
+    if pk == 1:
+        posters = posters.order_by('date')
+    elif pk == 2:
+        posters = posters.order_by('performance_id__name')
+    elif pk == 3:
+        posters = posters.order_by('performance_id__price')
+    elif pk == 4:
+        posters = posters.order_by('performance_id__author')
 
+    return render(request, "performance/performance_on_going.html", {"poster": posters})
 
-class PerformanceList(ListView):
-    model = Performance
-
-
-class Search(ListView): #TODO ne rabotayet(nado dodelat`)
-
-    def get_queryset(self):
-        return Performance.objects.filter(name__icontains=self.request.GET.get("q"))
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context["q"] = f'q={self.request.GET.get("q")}&'
-        return context

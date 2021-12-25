@@ -1,57 +1,20 @@
-{% extends 'base.html' %}
+{% extends 'base_admin.html' %}
 
 {% block title %}Performances{% endblock %}
 
-{% block header %}Performances{% endblock %}
+{% block header %}<a style="color: #fff" href="{% url 'perf_home' %}">Performances</a>{% endblock %}
 
 {% block content %}
-    <div class="card">
-        <h1>Performances on going</h1>
-            <div class="card-body">
-                <h5 class="card-title">Search</h5>
-                <p class="card-text">
-                    <div class="row">
-                            <div class="col-6">
-                                <form action="" method="get">
-                                    <div class="form-group form-row">
-                                        <div class="col-10">
-                                            <input type="text" class="form-control" name="query" placeholder="Search by name">
-                                            <input type="hidden" name="search_by" value="name">
-                                        </div>
-                                        <div class="col-2">
-                                            <button type="submit" class="btn btn-success">Search</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-6">
-                                <form action="" method="get">
-                                    <div class="form-group form-row">
-                                        <div class="col-10">
-                                            <input type="text" class="form-control" name="query" placeholder="Search by author">
-                                            <input type="hidden" name="search_by" value="author">
-                                        </div>
-                                        <div class="col-2">
-                                            <button type="submit" class="btn btn-success">Search</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                    </div>
-                </p>
-            </div>
-        </div> <!--TODO ne rabotayet poisk po imeni ili avtoru(nado dodelat`)-->
-    <div class="search-bar w3layouts-newsletter">
-        <h3 class="sear-head editContent">Performance search by name</h3>
-        <form action="{% url 'search' %}" method="get" class="d-flex editContent">
-            <input type="search" placeholder="Введите название..." name="q" class="form-control" required="">
-            <button type="submit" class="btn1 btn">
-                <span class="fa fa-search" aria-hidden="true"></span>
-            </button>
-        </form>
+    <div style="margin-bottom:20px">
+        <h1 style="text-align: center; display: block; color: white; margin-bottom: 50px">Сортувати за:</h1>
+        <div style="display: flex; justify-content: center">
+            <a href="{% url 'sort_performance' pk=1 %}"><button>Назва</button></a>
+            <a href="{% url 'sort_performance' pk=2 %}"><button>Ціна</button></a>
+            <a href="{% url 'sort_performance' pk=3 %}"><button>Ім'я автора</button></a>
+            <a href="{% url 'sort_performance' pk=4 %}"><button>Звичайно</button></a>
+        </div>
     </div>
     <div class="features">
-        <h2>{{ search_message }}</h2>
         {% if performances %}
             {% for el in performances %}
                 <div class="alert alert-warning">
@@ -60,6 +23,8 @@
                     <p>Description:{{ el.description }}</p>
                     <p>Duration: {{ el.duration }}</p>
                     <p>Price: {{ el.price }}</p>
+                    <p>Genre: {{ el.genre_id.genre }}</p>
+                    <p>Min age: {{ el.rating_id.min_age }}</p>
                 </div>
             {% endfor %}
         {% else %}
