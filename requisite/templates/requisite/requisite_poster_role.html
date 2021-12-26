@@ -1,1 +1,43 @@
-{%extends 'Requisite/base.html'%}
+{%extends 'base.html'%}
+
+{% block title %}Requisite and roles{% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'req_home' %}">Requisite</a>{% endblock %}
+
+{% block content %}
+<h4 align="center" class="lead">Requisite and roles</h4>
+<p></p>
+<table class="table table-bordered table-hover">
+    <div>
+        <tr style="text-align:center; color: #CDBEA7;">
+        <th scope="col" colspan="2">Requisite</th>
+        <th scope="col" colspan="2">Role</th>
+        <th scope="col" colspan="3">Performance</th>
+        </tr>
+        <tr style="text-align:center; color: #CDBEA7;">
+            <th scope="col">Name</th>
+            <th scope="col">ID</th>
+
+            <th scope="col">Name</th>
+            <th scope="col">ID</th>
+
+            <th scope="col">Title</th>
+            <th scope="col">ID</th>
+            <th scope="col">Date</th>
+        </tr>
+    </div>
+    {% for el in requisite %}
+    <div>
+        <tr style="color: #fff">
+            <th scope="col">{{el.requisite_id.name}}</th>
+            <th scope="col">{{el.requisite_id.id}}</th>
+            <th scope="col">{{el.role.name}}</th>
+            <th scope="col">{{el.role.id}}</th>
+            <th scope="col">{{el.poster.name}}</th>
+            <th scope="col">{{el.poster.id}}</th>
+            <th scope="col">{{el.poster.date}}</th>
+        </tr>
+    </div>
+    {% endfor %}
+</table>
+{% endblock %}

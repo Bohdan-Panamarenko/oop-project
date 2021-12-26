@@ -1,1 +1,28 @@
-{%extends 'Requisite/base.html'%}
+{%extends 'base.html'%}
+
+{% block title %}Requisite history{% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'req_home' %}">Requisite</a>{% endblock %}
+
+{% block content %}
+<h4 align="center" class="lead">Requisite history</h4>
+<p></p>
+<table class="table table-hover">
+    <div>
+        <tr style="color: #CDBEA7">
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+        </tr>
+    </div>
+    {% for el in requisite %}
+    <div>
+        <tr style="color: #fff">
+            <th scope="col">{{el.requisite_id.name}}</th>
+            <th scope="col">{{el.price}}</th>
+            <th scope="col">{{el.description}}</th>
+        </tr>
+    </div>
+    {% endfor %}
+</table>
+{% endblock %}

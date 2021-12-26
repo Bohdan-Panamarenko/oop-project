@@ -23,7 +23,7 @@ TICKETSTORE_SESSION_ID = 'ticketStore'
 SECRET_KEY = 'django-insecure-kc0i(lgg1ue6u8u*#277yd_@ks830h!9s5#qyt@tajk4*!8_-p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Employees',
+    'admin_home',
+    'main',
+    'employees',
     'performance',
     'requisite',
     'ticketStore',

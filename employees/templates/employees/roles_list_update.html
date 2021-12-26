@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+
+{% block title %} Employee {% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'employee' %}">Employees</a>{% endblock %}
+
+{% block content %}
+
+<form action="" method="post">
+        <div style="width:60%">
+        {% csrf_token %}
+        {{ form.as_p }}<br>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+
+                {{ form.errors }}
+        </div>
+    </form>
+
+{% endblock %}

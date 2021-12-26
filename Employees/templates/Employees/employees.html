@@ -1,1 +1,58 @@
-{%extends 'Employees/base.html'%}
+{%extends 'base.html'%}
+
+{% block title %} Employees {% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'employee' %}">Employees</a>{% endblock %}
+
+{% block content %}
+<h4 align="center" class="lead">Employees</h4>
+<div style="width:60%" class="feathers">
+    <h5 align="left">Search</h5>
+    <form method="post" name="search">
+        {% csrf_token %}
+        <input type="text" name="id" class="form-control" placeholder="ID"><br>
+        <input type="text" name="name" class="form-control" placeholder="Name"><br>
+        <input type="text" name="surname" class="form-control" placeholder="Surname"><br>
+        <input type="text" name="patronymic" class="form-control" placeholder="Patronymic"><br>
+        <input type="text" name="work_book" class="form-control" placeholder="Work book"><br>
+        <input type="text" name="email" class="form-control" placeholder="Email"><br>
+        <input type="text" name="phone" class="form-control" placeholder="Phone"><br>
+        <input type="text" name="address" class="form-control" placeholder="Address"><br>
+        <button type="submit" name="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+<p></p>
+<p><a href="{% url 'create_employee' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add employee</button></a></p>
+<table class="table table-hover">
+    <div>
+        <tr style="color: #CDBEA7">
+            <th scope="col">ID</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Patronymic</th>
+            <th scope="col">Work book</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Date of birth</th>
+        </tr>
+    </div>
+    {% for el in employees %}
+    <div>
+        <tr style="color: #fff">
+        <th scope="col"><a href="{% url 'employee_info' el.id %}">{{ el.id }}</a></th>
+        <th scope="col">{{ el.first_name }}</th>
+        <th scope="col">{{ el.last_name }}</th>
+        <th scope="col">{{ el.patronymic }}</th>
+        <th scope="col">{{ el.work_book }}</th>
+        <th scope="col">{{ el.email }}</th>
+        <th scope="col">{{ el.phone }}</th>
+        <th scope="col">{{ el.address }}</th>
+        <th scope="col">({{ el.date_of_birth }})</th>
+        </tr>
+
+    </div>
+
+    {% endfor %}
+</table>
+{% endblock %}
