@@ -1,0 +1,20 @@
+{%extends 'base_admin.html'%}
+
+{% block title %} Performance on going {% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'performance_on_going' %}">Performance on going</a>{% endblock %}
+
+{% block content %}
+<h2 style="color: white">Are you sure you want to delete?</h2>
+<form method="post">
+    <div style="width:60%">
+    {% csrf_token %}
+    {{ form.as_p }}<br>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+
+    {{ form.errors }}
+    </div>
+</form>
+
+{% endblock %}

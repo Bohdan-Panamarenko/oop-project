@@ -9,25 +9,31 @@
         <h1 style="text-align: center; display: block; color: white; margin-bottom: 50px">Сортувати за:</h1>
         <div style="display: flex; justify-content: center">
             <a href="{% url 'sort_performance_on_going' pk=1 %}"><button>Дата</button></a>
+            <a href="{% url 'sort_performance_on_going' pk=5 %}"><button>Дата зворотньо</button></a>
             <a href="{% url 'sort_performance_on_going' pk=2 %}"><button>Назва</button></a>
+            <a href="{% url 'sort_performance_on_going' pk=6 %}"><button>Назва зворотньо</button></a>
             <a href="{% url 'sort_performance_on_going' pk=3 %}"><button>Ціна</button></a>
+            <a href="{% url 'sort_performance_on_going' pk=7 %}"><button>Дата зворотньо</button></a>
             <a href="{% url 'sort_performance_on_going' pk=4 %}"><button>Ім'я автора</button></a>
-            <a href="{% url 'sort_performance_on_going' pk=5 %}"><button>Звичайно</button></a>
+            <a href="{% url 'sort_performance_on_going' pk=8 %}"><button>Дата зворотньо</button></a>
+            <a href="{% url 'sort_performance_on_going' pk=0 %}"><button>Звичайно</button></a>
         </div>
     </div>
     <div class="features">
+        <a href="{% url 'create_performance_on_going' %}"><button>Create performance on going</button></a>
         {% if poster %}
             {% for el in poster %}
                 <div class="alert alert-warning">
                     <h3>{{ el.performance_id.name }}</h3>
-                    <h5>Author: {{ el.performance_id.author }}</h5>
-                    <p>Description:{{ el.performance_id.description }}</p>
-                    <p>Duration: {{ el.performance_id.duration }}</p>
-                    <p>Price: {{ el.performance_id.price }}</p>
-                    <p>Genre: {{ el.performance_id.genre_id.genre }}</p>
-                    <p>Min age: {{ el.performance_id.rating_id.min_age }}</p>
-                    <p>Date: {{ el.date }}</p>
-                    <p>Hall: {{ el.hall_id.number }}</p>
+                    <h5>Автор: {{ el.performance_id.author }}</h5>
+                    <p>Опис: {{ el.performance_id.description }}</p>
+                    <p>Тривалість: {{ el.performance_id.duration }}</p>
+                    <p>Ціна: {{ el.performance_id.price }}</p>
+                    <p>Жанр: {{ el.performance_id.genre_id.genre }}</p>
+                    <p>Мінімальний вік глядача: {{ el.performance_id.rating_id.min_age }}</p>
+                    <p>Час початку: {{ el.date }}</p>
+                    <p>Номер залу: {{ el.hall_id.number }}</p>
+                    <a href="{% url 'performance_on_going_info' pk=el.id %}"><button>Детальніше</button></a>
                 </div>
             {% endfor %}
         {% else %}
