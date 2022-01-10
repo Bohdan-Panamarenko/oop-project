@@ -1,0 +1,25 @@
+{% extends 'base_admin.html' %}
+{% block links %}
+<a style="color: #6899D3;" class="nav-link" href="{% url 'home' %}">Back to client</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url perf_home}">Performances</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'employee' %}">Employees</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'req_home' %}">Requisite</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'authorization' %}">Authorization</a>
+{% endblock %}
+{% block title %}Employees{% endblock %}
+
+{% block header %}Employees{% endblock %}
+
+{% block content %}
+<div>
+    <main class="text-center" >
+    <p class="lead">Menu</p>
+        <p></p>
+        <div><a class="menu_link" href="employees/" class="btn-link">Employees</a></div>
+        <div><a class="menu_link" href="hiring/" class="btn-link">Hiring</a></div>
+        <div><a class="menu_link" href="roles/" class="btn-link">Roles</a></div>
+        <div><a class="menu_link" href="positions/" class="btn-link">Positions</a></div>
+        <div><a class="menu_link" href="roles_list/" class="btn-link">Roles list</a></div>
+  </main>
+</div>
+{% endblock %}

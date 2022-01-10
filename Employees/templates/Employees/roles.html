@@ -1,1 +1,64 @@
-{%extends 'Employees/base.html'%}
+{%extends 'base_admin.html'%}
+
+{% block title %} Employees {% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'employee' %}">Employees</a>{% endblock %}
+{% block links %}
+<a style="color: #6899D3;" class="nav-link" href="{% url 'home' %}">Back to client</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'employee' %}">Employees</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'authorization' %}">Authorization</a>
+{% endblock %}
+{% block content %}
+<h2 align="center" class="lead">Roles</h2>
+<p></p>
+<div style="width:60%" class="feathers">
+    <h5 align="left">Search</h5>
+    <form method="post" name="search">
+        {% csrf_token %}
+        <input type="text" name="id" class="form-control" placeholder="ID"><br>
+        <input type="text" name="name" class="form-control" placeholder="Name"><br>
+        <input type="text" name="surname" class="form-control" placeholder="Surname"><br>
+        <input type="text" name="role" class="form-control" placeholder="Role"><br>
+        <input type="text" name="performance" class="form-control" placeholder="Performance"><br>
+        <input type="text" name="fee" class="form-control" placeholder="Fee"><br>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<p><a href="{% url 'create_role' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add role</button></a></p>
+<p><a href="{% url 'sort_roles_id_asc' %}"><button>Id asc</button></a>
+    <a href="{% url 'sort_roles_id_desc' %}"><button>Id desc</button></a>
+<a href="{% url 'sort_roles_name_asc' %}"><button>Name asc</button></a>
+    <a href="{% url 'sort_roles_name_desc' %}"><button>Name desc</button></a>
+<a href="{% url 'sort_roles_surname_asc' %}"><button>Surname asc</button></a>
+    <a href="{% url 'sort_roles_surname_desc' %}"><button>Surname desc</button></a>
+<a href="{% url 'sort_roles_role_asc' %}"><button>Role asc</button></a>
+    <a href="{% url 'sort_roles_role_desc' %}"><button>Role desc</button></a>
+<a href="{% url 'sort_roles_performance_asc' %}"><button>Performance asc</button></a>
+    <a href="{% url 'sort_roles_performance_desc' %}"><button>Performance desc</button></a>
+<a href="{% url 'sort_roles_fee_asc' %}"><button>Fee asc</button></a>
+    <a href="{% url 'sort_roles_fee_desc' %}"><button>Fee desc</button></a>
+<table class="table table-hover">
+    <div>
+        <tr style="color: #CDBEA7">
+            <th scope="col">ID</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Performance</th>
+            <th scope="col">Fee</th>
+        </tr>
+    </div>
+    {% for el in roles %}
+    <div>
+        <tr style="color: #fff">
+        <th scope="col"><a href="{% url 'roles_info' el.id %}">{{ el.id }}</a></th>
+        <th scope="col">{{ el.employee_id.first_name }}</th>
+        <th scope="col">{{ el.employee_id.last_name }}</th>
+        <th scope="col">{{ el.role_id.name }}</th>
+        <th scope="col">{{ el.poster_id.performance_id.name }}</th>
+        <th scope="col">{{ el.fee }}</th>
+        </tr>
+    </div>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,7 +1,47 @@
-{% extends 'performance/performance_layout.html' %}
+{% extends 'base.html' %}
 
-{% block title %}Hot tickets{% endblock %}
+{% block title %}Performances{% endblock %}
 
 {% block content %}
-    <h1>Hot tickets</h1>
+    <style>
+        .features {
+            color: #dce3fa;
+            margin-top: 10px;
+            text-align: center;
+            width: 75%;
+        }
+        .alert-warning {
+            clear: both;
+            width: 600px;
+            margin: 10px 50%;
+            text-align: left;
+        }
+        h1 {
+            float: centre;
+            color: #dce3fa;
+            text-align: centre;
+            text-align: centre;
+        }
+    </style>
+    <h1>Hot tickets <a href="{% url 'ticketStore_main' %}"><button class="btn btn-warning">TicketStore</button></a></h1>
+    <div class="features">
+        {% if performances %}
+            {% for el in performances %}
+                {% if el.id == 1 %}
+                    <div class="alert-warning">
+                        <h3>{{ el.name }}</h3>
+                        <h5>Author: {{ el.author }}</h5>
+                        <p>Date: 30/12/2021</p>
+                        <p>{{ el.description }}</p>
+                        <p>Duration: {{ el.duration }}</p>
+                        <p>Price: {{ el.price }}</p>
+                        <p><a href="{% url 'ticketStore_performance' el.id %}"><button class="btn btn-warning">Buy tickets</button></a></p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>no performances yet</p>
+        {% endif %}
+    </div>
+
 {% endblock %}

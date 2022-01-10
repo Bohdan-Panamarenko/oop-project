@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{% block header %}<a style="color: #fff" href="{% url 'req_home' %}">Requisite</a>{% endblock %}
+
+{% block content %}
+<div class="feathers" >
+    <h1 style="color: #fff">Add requisite</h1>
+    <p><a href="{% url 'create_requisite_type' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add type</button></a></p>
+    <form method="post">
+        <div style="width:60%">
+        {% csrf_token %}
+        {{ form.name }}<br>
+        {{ form.requisite_type_id }}<br>
+        <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Submit</button></div>
+    </form>
+</div>
+{% endblock %}

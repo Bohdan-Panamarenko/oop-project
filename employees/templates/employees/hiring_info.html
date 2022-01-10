@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{% block title %} Employee {% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'employee' %}">Employees</a>{% endblock %}
+
+{% block content %}
+
+<form method="post">
+        <div style="left:40%; position:fixed; font-size:18px">
+        {% csrf_token %}
+        Id: {{ hiring.id }}<br><br>
+        Full name: {{ hiring.employee_id.first_name }} {{ hiring.employee_id.last_name }} {{ hiring.employee_id.patronymic }}<br><br>
+        Position: {{ hiring.position_id.position }}<br><br>
+        Hiring date: {{ hiring.hiring_date }}<br><br>
+        <span>{{ error }}</span>
+                <a href="{% url 'hiring_update' hiring.id %}" class="btn btn-info">Edit</a>
+                <a href="{% url 'hiring_delete' hiring.id %}" class="btn btn-danger">Delete</a>
+            </div>
+    </form>
+
+{% endblock %}

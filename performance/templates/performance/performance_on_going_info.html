@@ -1,0 +1,26 @@
+{%extends 'base_admin.html'%}
+
+{% block title %} Employee {% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'performance' %}">Performance</a>{% endblock %}
+
+{% block content %}
+
+<form method="post">
+        <div style="left:40%; position:fixed; font-size:18px; color: white">
+        {% csrf_token %}
+        Назва: {{ performance_on_going.performance_id.name }}<br><br>
+        Опис: {{ performance_on_going.performance_id.description }}<br><br>
+        Тривалість: {{ performance_on_going.performance_id.duration }}<br><br>
+        Ціна: {{ performance_on_going.performance_id.price }}<br><br>
+        Жанр: {{ performance_on_going.performance_id.genre_id.genre }}<br><br>
+        Мінімальний вік глядача: {{ performance_on_going.performance_id.rating_id.min_age }}<br><br>
+        Час початку: {{ performance_on_going.date }}<br><br>
+        Номер залу: {{ performance_on_going.hall_id.number }}<br><br>
+        <span>{{ error }}</span>
+            <a href="{% url 'performance_on_going_update' pk=performance_on_going.id %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'performance_on_going_delete' pk=performance_on_going.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </form>
+
+{% endblock %}

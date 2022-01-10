@@ -1,16 +1,45 @@
-{%extends 'D:\GitHub\oop-project\main\templates\base.html'%}
+{%extends 'base.html'%}
 
 {% block title %}Requisite list{% endblock %}
 
-{% block header %}<a href="{% url 'req_home' %}">Requisite list</a>{% endblock %}
+{% block header %}<a style="color: #fff" href="{% url 'req_home' %}">Requisite</a>{% endblock %}
 
 {% block content %}
-<h4>Requisite list</h4>
-<p>
+<h4 align="center" class="lead">Requisite list</h4>
+<<<<<<< HEAD
+<form method="get" style="color: #fff">
+    Type {{typeFilter.form.requisite_type_id}}
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+<p><a href="{% url 'create_requisite' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add requisite</button></a></p>
+=======
+<p></p>
+>>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
+<table class="table table-hover">
+    <div>
+        <tr style="color: #CDBEA7">
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+<<<<<<< HEAD
+            <th></th><th></th>
+=======
+>>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
+        </tr>
+    </div>
     {% for el in requisite %}
-    <div class="mt-2">
-        <p><mark>{{el.id}}. {{el.name}}</mark></p>
+    <div>
+        <tr style="color: #fff">
+        <th scope="col">{{el.id}}</th>
+        <th scope="col">{{el.name}}</th>
+        <th scope="col">({{el.requisite_type_id.type}})</th>
+<<<<<<< HEAD
+        <th><a href="{% url 'requisite_delete' el.id %}" class="btn btn-danger">Delete</a></th>
+        <th><a href="{% url 'requisite_update' el.id %}" class="btn btn-info">Update</a></th>
+=======
+>>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
+        </tr>
     </div>
     {% endfor %}
-</p>
+</table>
 {% endblock %}

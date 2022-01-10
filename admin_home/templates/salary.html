@@ -1,0 +1,25 @@
+{% extends 'base_admin.html' %}
+{% block header %}Administration{% endblock %}
+{% block links %}
+<a style="color: #6899D3;" class="nav-link" href="{% url 'admin_home' %}">Home</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'home' %}">Back to client</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'authorization' %}">Authorization</a>
+{% endblock %}
+{% block content %}
+<table class="table table-hover">
+    <div>
+        <tr style="color: #CDBEA7">
+            <th scope="col">Date</th>
+            <th scope="col">Salary</th>
+        </tr>
+    </div>
+    {% for el in roles %}
+    <div>
+        <tr style="color: #fff">
+        <th scope="col">{{ el.id }}</th>
+        <th scope="col">{{ el.salary }}</th>
+        </tr>
+    </div>
+    {% endfor %}
+</table>
+{% endblock %}

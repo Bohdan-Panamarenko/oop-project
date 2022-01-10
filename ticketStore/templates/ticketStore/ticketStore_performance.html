@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}TicketStore{% endblock %}
+
+{% block content %}
+    <h1>TicketStore <a href="{% url 'ticketStore_hot' %}"><button class="btn btn-warning">Hot tickets</button></a></h1>
+    <br>
+    <style>
+        .features {
+            color: #dce3fa;
+            margin-top: 10px;
+            text-align: center;
+            width: 50%;
+        }
+        .ticketStore-warning {
+            float: right;
+            background: #dce3fa;
+            width: 10%;
+            height: 100%;
+            color: #000000;
+        }
+        .ticketStore-warning li {
+            color: black;
+            display: block;
+            margin-top: 20px;
+            transition: transform .6s ease;
+        }
+        .ticketStore-warning li:hover, .ticketStore-warning a:hover {
+            color: #eb5959;
+            text-decoration: none;
+            transform: scale(1.05);
+        }
+        h1 {
+            color: #dce3fa;
+            text-align: left;
+        }
+        .button {
+            background-color: #008CBA;
+            float: left;
+            color: black;
+            display: block;
+            height: 40px;
+            width: 40px;
+            text-align: centre;
+        }
+        .button:focus {
+            background-color: red;
+        }
+        .btn-not-availability {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        form {
+            width: 400px;
+            margin-top: 40px;
+        }
+
+        .custom-checkbox+label {
+              display: inline-flex;
+              align-items: center;
+              user-select: none;
+        }
+        .custom-checkbox+label::before {
+              content: '';
+              display: inline-block;
+              width: 1em;
+              height: 1em;
+              flex-shrink: 0;
+              flex-grow: 0;
+              border: 1px solid #adb5bd;
+              border-radius: 0.25em;
+              margin-right: 0.5em;
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: 50% 50%;
+        }
+    </style>
+        <div class="alert ticketStore-warning">
+            {% if not tickets_order %}
+                <p>Cart is empty</p>
+            {% else %}
+                <p>{{ tick }} tickets in cart</p>
+                <h6>Price: {{ order_price }}</h6>
+            {% endif %}
+            <a href="{% url 'ticketStore_form' %}"><button class="btn btn-warning">Order</button></a>
+        </div>
+        {% if tickets %}
+            {% for el in tickets %}
+                {% if el.poster_id_id == pk %}
+                    {% if el.availability %}
+                        <a href="{% url 'ticketStore_order' pk=pk pkt=el.place%}"><button class="button">{{el.place}}</button></a>
+                        {% if el.place == 10 %}
+                            <br><br>
+                        {% endif %}
+                        {% if el.place == 20 %}
+                            <br><br>
+                        {% endif %}
+                        {% if el.place == 30 %}
+                            <br><br>
+                        {% endif %}
+                        {% if el.place == 40 %}
+                            <br><br>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'ticketStore_order' pk=pk pkt=el.place%}"><button class="button btn-not-availability">{{el.place}}</button></a>
+                        {% if el.place == 10 %}
+                            <br><br>
+                        {% endif %}
+                        {% if el.place == 20 %}
+                            <br><br>
+                        {% endif %}
+                        {% if el.place == 30 %}
+                            <br><br>
+                        {% endif %}
+                        {% if el.place == 40 %}
+                            <br><br>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>no tickets</p>
+        {% endif %}
+{% endblock %}

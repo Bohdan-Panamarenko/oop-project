@@ -4,19 +4,24 @@ import django.core.validators as validators
 
 
 class Rating(models.Model):
-    description = models.TextField('Description of a rating', max_length=100)
+    description = models.CharField('Description of a rating', max_length=100)
     min_age = models.IntegerField('Minimal age of a visitor')
+
+    def __str__(self):
+        return f'{self.min_age} {self.description}'
 
 
 class Genre(models.Model):
-    genre = models.TextField('Name of genre', max_length=32)
+    genre = models.CharField('Name of genre', max_length=32)
+
+    def __str__(self):
+        return self.genre
 
 
 class Performance(models.Model):
     name = models.CharField('Name', max_length=64)
     rating_id = models.ForeignKey(Rating, null=True, on_delete=models.SET_NULL)
     description = models.TextField('Description of performance')
-    # poster = models.ImageField("Постер", upload_to="performance/")
     author = models.CharField('Author', max_length=64)
     duration = models.DurationField('Duration of performance')
     genre_id = models.ForeignKey(Genre, null=True, on_delete=models.SET_NULL)
@@ -31,6 +36,9 @@ class Performance(models.Model):
 class Hall(models.Model):
     number = models.CharField('Number of a hall', max_length=32)
     description = models.TextField('Description', max_length=100)
+
+    def __str__(self):
+        return f'{self.number} | {self.description}'
 
 
 class Tier(models.Model):

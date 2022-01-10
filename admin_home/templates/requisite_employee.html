@@ -1,0 +1,42 @@
+{% extends 'base_admin.html' %}
+{% block header %}Administration{% endblock %}
+{% block links %}
+<a style="color: #6899D3;" class="nav-link" href="{% url 'home' %}">Back to client</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'authorization' %}">Log out</a>
+{% endblock %}
+{% block content %}
+<table class="table table-bordered table-hover">
+    <div>
+        <tr style="text-align:center; color: #CDBEA7;">
+        <th scope="col" colspan="2">Requisite</th>
+        <th scope="col" colspan="2">Role</th>
+        <th scope="col" colspan="3">Performance</th>
+        <th scope="col" colspan="2"></th>
+        </tr>
+        <tr style="text-align:center; color: #CDBEA7;">
+            <th scope="col">Name</th>
+            <th scope="col">ID</th>
+
+            <th scope="col">Name</th>
+            <th scope="col">ID</th>
+
+            <th scope="col">Title</th>
+            <th scope="col">ID</th>
+            <th scope="col">Date</th>
+        </tr>
+    </div>
+    {% for el in requisite %}
+    <div>
+        <tr style="color: #fff">
+            <th scope="col">{{el.requisite_id.name}}</th>
+            <th scope="col">{{el.requisite_id.id}}</th>
+            <th scope="col">{{el.role_id.role_id.name}}</th>
+            <th scope="col">{{el.role_id.id}}</th>
+            <th scope="col">{{el.poster_id.performance_id.name}}</th>
+            <th scope="col">{{el.poster_id.performance_id.id}}</th>
+            <th scope="col">{{el.poster_id.date}}</th>
+        </tr>
+    </div>
+    {% endfor %}
+</table>
+{% endblock %}

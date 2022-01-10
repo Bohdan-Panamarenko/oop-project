@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{% block title %} Requisite {% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'req_home' %}">Requisite</a>{% endblock %}
+
+{% block content %}
+<h2 style="color: #fff">Are you sure you want to delete?</h2>
+<form action="" method="post">
+        <div style="width:60%">
+        {% csrf_token %}
+        {{ form.as_p }}<br>
+            <button type="submit" class="btn btn-danger">Delete</button>
+            {{ form.errors }}
+        </div>
+    </form>
+{% endblock %}

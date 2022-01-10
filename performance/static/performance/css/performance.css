@@ -42,7 +42,7 @@ aside img {
 aside img:hover {
     color: #eb5959;
     text-decoration: none;
-    transform: scale(1.05);*/
+    transform: scale(1.05);
 }
 
 aside h3 {

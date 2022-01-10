@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}TicketStore{% endblock %}
+
+{% block content %}
+    <h1>TicketStore <a href="{% url 'ticketStore_hot' %}"><button class="btn btn-warning">Hot tickets</button></a></h1>
+    <a href="{% url 'ticketStore_main' pk='cancel' %}"><button class="btn btn-warning">Cancel order</button></a></h1>
+    <br>
+    <style>
+        .features {
+            color: #dce3fa;
+            margin-top: 10px;
+            text-align: center;
+            width: 50%;
+        }
+        .ticketStore-warning {
+            float: right;
+            background: #dce3fa;
+            width: 10%;
+            height: 100%;
+            color: #000000;
+        }
+        .ticketStore-warning li {
+            color: black;
+            display: block;
+            margin-top: 20px;
+            transition: transform .6s ease;
+        }
+        .ticketStore-warning li:hover, .ticketStore-warning a:hover {
+            color: #eb5959;
+            text-decoration: none;
+            transform: scale(1.05);
+        }
+        h1 {
+            color: #dce3fa;
+            text-align: left;
+        }
+        h2 {
+            color: #dce3fa;
+            text-align: left;
+        }
+        h5 {
+            color: #dce3fa;
+            text-align: left;
+        }
+        .button {
+            background-color: #008CBA;
+            float: left;
+            color: black;
+            display: block;
+            height: 40px;
+            width: 40px;
+            text-align: centre;
+        }
+        .button:focus {
+            background-color: red;
+        }
+        .btn-not-availability {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        form {
+            width: 400px;
+            margin-top: 40px;
+        }
+
+        .custom-checkbox+label {
+              display: inline-flex;
+              align-items: center;
+              user-select: none;
+        }
+        .custom-checkbox+label::before {
+              content: '';
+              display: inline-block;
+              width: 1em;
+              height: 1em;
+              flex-shrink: 0;
+              flex-grow: 0;
+              border: 1px solid #adb5bd;
+              border-radius: 0.25em;
+              margin-right: 0.5em;
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: 50% 50%;
+        }
+    </style>
+        <div class="features">
+            <h1>Your tickets: Price: {{ order_price }}</h1>
+            {% if not tickets_order %}
+                <p>Cart is empty</p>
+            {% else %}
+                {% for i in tickets_order_output_numpy_array %}
+                    <h5>{{ forloop.counter }}) Performance: {{ i.0 }}, place: {{ i.1 }}</h5>
+                {% endfor %}
+            {% endif %}
+            <h1>Форма придбання квитків</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.name }}<br>
+                {{ form.phone }}<br>
+                {{ form.mail }}<br>
+                {{ form.cc_number }}<br>
+                {{ form.cc_expiry }}<br>
+                {{ form.cc_code }}<br>
+                <span>{{ error }}</span>
+                <button class="btn btn-success" type="submit"> Замовити </button>
+            </form>
+        </div>
+{% endblock %}

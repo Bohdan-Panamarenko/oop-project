@@ -1,0 +1,18 @@
+{% extends 'base_admin.html' %}
+{% block header %}Administration{% endblock %}
+{% block links %}
+<a style="color: #6899D3;" class="nav-link" href="{% url 'admin_home' %}">Home</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'home' %}">Back to client</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'authorization' %}">Authorization</a>
+{% endblock %}
+{% block content %}<div>
+    <main class="text-center" >
+    <p class="lead">Menu</p>
+        <p></p>
+        <div><a class="menu_link" href="{% url 'employee_info' employee.id %}" class="btn-link">Information</a></div>
+        <div><a class="menu_link" href="{% url 'salary' employee.id %}" class="btn-link">Salary</a></div>
+        <div><a class="menu_link" href="{% url 'roles_employee' employee.id %}" class="btn-link">Roles</a></div>
+        <div><a class="menu_link" href="{% url 'requisite_employee' employee.id %}" class="btn-link">Requisite</a></div>
+  </main>
+</div>
+{% endblock %}
