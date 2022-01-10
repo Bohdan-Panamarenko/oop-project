@@ -1,0 +1,83 @@
+{%extends 'base_admin.html'%}
+
+{% block title %} Employees {% endblock %}
+
+{% block header %}<a style="color: #fff" href="{% url 'employee' %}">Employees</a>{% endblock %}
+{% block links %}
+<a style="color: #6899D3;" class="nav-link" href="{% url 'home' %}">Back to client</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'employee' %}">Employees</a>
+<a style="color: #6899D3;" class="nav-link" href="{% url 'authorization' %}">Authorization</a>
+{% endblock %}
+{% block content %}
+<h4 align="center" class="lead">Employees</h4>
+<div style="width:40%" class="feathers">
+    <h5 align="left">Search</h5>
+    <form method="post" name="search">
+        {% csrf_token %}
+        <input type="text" name="id" class="form-control" placeholder="ID" style="display:inline-block">
+        <input type="text" name="name" class="form-control" placeholder="Name" style="display:inline-block">
+        <input type="text" name="surname" class="form-control" placeholder="Surname" style="display:inline-block">
+        <input type="text" name="patronymic" class="form-control" placeholder="Patronymic">
+        <input type="text" name="work_book" class="form-control" placeholder="Work book">
+        <input type="text" name="email" class="form-control" placeholder="Email">
+        <input type="text" name="phone" class="form-control" placeholder="Phone">
+        <input type="text" name="address" class="form-control" placeholder="Address">
+        <button type="submit" name="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+<p></p>
+<p><a href="{% url 'create_employee' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add employee</button></a>
+</p>
+<br>
+<p><a href="{% url 'sort_employees_id_asc' %}"><button>Id asc</button></a>
+<a href="{% url 'sort_employees_id_desc' %}"><button>Id desc</button></a>
+<a href="{% url 'sort_employees_name_asc' %}"><button>Name asc</button></a>
+<a href="{% url 'sort_employees_name_desc' %}"><button>Name desc</button></a>
+<a href="{% url 'sort_employees_surname_asc' %}"><button>Surname asc</button></a>
+<a href="{% url 'sort_employees_surname_desc' %}"><button>Surname desc</button></a>
+<a href="{% url 'sort_employees_patronymic_asc' %}"><button>Patronymic asc</button></a>
+<a href="{% url 'sort_employees_patronymic_desc' %}"><button>Patronymic desc</button></a>
+<a href="{% url 'sort_employees_workbook_asc' %}"><button>Work book asc</button></a>
+<a href="{% url 'sort_employees_workbook_desc' %}"><button>Work book desc</button></a>
+<a href="{% url 'sort_employees_email_asc' %}"><button>Email asc</button></a>
+<a href="{% url 'sort_employees_email_desc' %}"><button>Email book desc</button></a>
+<a href="{% url 'sort_employees_phone_asc' %}"><button>Phone asc</button></a>
+<a href="{% url 'sort_employees_phone_desc' %}"><button>Phone desc</button></a>
+<a href="{% url 'sort_employees_address_asc' %}"><button>Address asc</button></a>
+<a href="{% url 'sort_employees_address_desc' %}"><button>Address book desc</button></a>
+<a href="{% url 'sort_employees_date_asc' %}"><button>Date asc</button></a>
+<a href="{% url 'sort_employees_date_desc' %}"><button>Date desc</button></a>
+</p>
+<table class="table table-hover">
+    <div>
+        <tr style="color: #CDBEA7">
+            <th scope="col">ID</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Patronymic</th>
+            <th scope="col">Work book</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Date of birth</th>
+        </tr>
+    </div>
+    {% for el in employees %}
+    <div>
+        <tr style="color: #fff">
+        <th scope="col"><a href="{% url 'employee_info' el.id %}">{{ el.id }}</a></th>
+        <th scope="col">{{ el.first_name }}</th>
+        <th scope="col">{{ el.last_name }}</th>
+        <th scope="col">{{ el.patronymic }}</th>
+        <th scope="col">{{ el.work_book }}</th>
+        <th scope="col">{{ el.email }}</th>
+        <th scope="col">{{ el.phone }}</th>
+        <th scope="col">{{ el.address }}</th>
+        <th scope="col">({{ el.date_of_birth }})</th>
+        </tr>
+
+    </div>
+
+    {% endfor %}
+</table>
+{% endblock %}
