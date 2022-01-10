@@ -6,25 +6,19 @@
 
 {% block content %}
 <h4 align="center" class="lead">Requisite and roles</h4>
-<<<<<<< HEAD
 <form method="get" style="color: #fff">
     Requisite {{requisiteFilter.form.requisite_id}}
     <button class="btn btn-primary" type="submit">Search</button>
 </form>
 <p><a href="{% url 'create_requisite_role' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add record</button></a></p>
-=======
-<p></p>
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
+
 <table class="table table-bordered table-hover">
     <div>
         <tr style="text-align:center; color: #CDBEA7;">
         <th scope="col" colspan="2">Requisite</th>
         <th scope="col" colspan="2">Role</th>
         <th scope="col" colspan="3">Performance</th>
-<<<<<<< HEAD
         <th scope="col" colspan="2"></th>
-=======
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
         </tr>
         <tr style="text-align:center; color: #CDBEA7;">
             <th scope="col">Name</th>
@@ -36,10 +30,7 @@
             <th scope="col">Title</th>
             <th scope="col">ID</th>
             <th scope="col">Date</th>
-<<<<<<< HEAD
             <th></th><th></th>
-=======
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
         </tr>
     </div>
     {% for el in requisite %}
@@ -47,7 +38,6 @@
         <tr style="color: #fff">
             <th scope="col">{{el.requisite_id.name}}</th>
             <th scope="col">{{el.requisite_id.id}}</th>
-<<<<<<< HEAD
             <th scope="col">{{el.role_id.role_id.name}}</th>
             <th scope="col">{{el.role_id.id}}</th>
             <th scope="col">{{el.poster_id.performance_id.name}}</th>
@@ -55,13 +45,6 @@
             <th scope="col">{{el.poster_id.date}}</th>
             <th><a href="{% url 'requisite_role_delete' el.id %}" class="btn btn-danger">Delete</a></th>
             <th><a href="{% url 'requisite_role_update' el.id %}" class="btn btn-info">Update</a></th>
-=======
-            <th scope="col">{{el.role.name}}</th>
-            <th scope="col">{{el.role.id}}</th>
-            <th scope="col">{{el.poster.name}}</th>
-            <th scope="col">{{el.poster.id}}</th>
-            <th scope="col">{{el.poster.date}}</th>
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
         </tr>
     </div>
     {% endfor %}

@@ -24,21 +24,16 @@ def requisite_history(request):
     if request.session['position_id'] != 2:
         return redirect('authorization')
     output = RequisiteHistory.objects.all()
-<<<<<<< HEAD
     requisiteFilter = RequisiteFilter(request.GET, queryset=output)
     output = requisiteFilter.qs
     return render(request, 'Requisite/requisite_history.html', {'requisite': output,
                                                                 'requisiteFilter': requisiteFilter})
-=======
-    return render(request, 'Requisite/requisite_history.html', {'requisite': output})
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
 
 
 def requisite_poster_role(request):
     if request.session['position_id'] != 2:
         return redirect('authorization')
     output = RequisitePosterRole.objects.all()
-<<<<<<< HEAD
     requisiteFilter = RequisiteFilter(request.GET, queryset=output)
     output = requisiteFilter.qs
     return render(request, 'Requisite/requisite_poster_role.html', {'requisite': output,
@@ -165,6 +160,3 @@ def sort_requisite_desc(request):
     requisite = RequisiteHistory.objects.all()
     requisite = requisite.order_by('-price')
     return render(request, "Requisite/requisite_history.html", {"requisite": requisite})
-=======
-    return render(request, 'Requisite/requisite_poster_role.html', {'requisite': output})
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d

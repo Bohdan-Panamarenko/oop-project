@@ -1,5 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from employees.models import Account, Employee, Position, Hiring
 from .forms import EmployeeForm
 
@@ -38,10 +37,3 @@ def authorization(request):
         'error': error
     }
     return render(request, 'authorization.html', data)
-=======
-
-# Create your views here.
-
-def main(request):
-    return render(request, 'main.html')
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d

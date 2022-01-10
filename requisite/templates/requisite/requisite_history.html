@@ -6,7 +6,6 @@
 
 {% block content %}
 <h4 align="center" class="lead">Requisite history</h4>
-<<<<<<< HEAD
 <form method="get" style="color: #fff">
     Requisite {{requisiteFilter.form.requisite_id}}
     Name {{requisiteFilter.form.requisite_id__name}}
@@ -15,19 +14,13 @@
 <a href="{% url 'sort_requisite_asc'%}"><button class="btn btn-info">ASC</button></a>
 <a href="{% url 'sort_requisite_desc'%}"><button class="btn btn-info">DESC</button></a>
 <p><a href="{% url 'create_requisite_his' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add record</button></a></p>
-=======
-<p></p>
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
 <table class="table table-hover">
     <div>
         <tr style="color: #CDBEA7">
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Description</th>
-<<<<<<< HEAD
             <th></th>
-=======
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
         </tr>
     </div>
     {% for el in requisite %}
@@ -36,10 +29,7 @@
             <th scope="col">{{el.requisite_id.name}}</th>
             <th scope="col">{{el.price}}</th>
             <th scope="col">{{el.description}}</th>
-<<<<<<< HEAD
             <th><a href="{% url 'requisite_his_delete' el.id %}" class="btn btn-danger">Delete</a></th>
-=======
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
         </tr>
     </div>
     {% endfor %}

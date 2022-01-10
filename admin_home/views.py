@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.db.models.functions import TruncMonth, ExtractMonth
 from django.contrib.auth.decorators import login_required
@@ -50,11 +49,3 @@ def salary(request, pk):
 
 def employee_main(request):
     return render(request, 'employee_main.html')
-=======
-from django.shortcuts import render
-
-# Create your views here.
-
-def admin(request):
-    return render(request, 'admin_main.html')
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d

@@ -6,7 +6,6 @@ from employees import views
 admin.autodiscover()
 
 urlpatterns = [
-<<<<<<< HEAD
     path('', views.main, name='employee'),
     path('/sort_roles_id_asc/', views.sort_roles_id_asc, name='sort_roles_id_asc'),
     path('/sort_roles_id_desc/', views.sort_roles_id_desc, name='sort_roles_id_desc'),
@@ -83,10 +82,4 @@ urlpatterns = [
     path('hiring/', views.hiring, name='hiring'),
     path('roles/', views.roles, name='roles'),
     path('positions/', views.positions, name='positions')
-=======
-    path('', views.index, name = 'employees_main'),
-    path('employees', views.employees, name='employees'),
-    path('hiring', views.hiring, name='hiring'),
-    path('roles', views.roles, name='roles')
->>>>>>> 2e166d30e963d225d123d3ad03c11980f04e4c4d
 ]
