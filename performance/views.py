@@ -6,13 +6,13 @@ from django.views.generic import DetailView, UpdateView, DeleteView
 
 
 def main(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     return render(request, 'performance/main.html')
 
 
 def performance(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     performances = Performance.objects.all()
     return render(request, 'performance/performance.html', {'performances': performances})
@@ -37,7 +37,7 @@ def sort_performance(request, pk):
 
 
 def create_performance(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = PerformanceForm()
     error = ''
@@ -76,7 +76,7 @@ class PerformanceDeleteView(DeleteView):
 
 
 def performance_on_going(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     poster = Poster.objects.all()
     print(poster[0].date)

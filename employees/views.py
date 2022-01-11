@@ -6,7 +6,7 @@ from .forms import EmployeeForm, PositionForm, RoleForm, HiringForm, RoleListFor
 
 
 def main(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     return render(request, "employees/main.html")
 
@@ -437,7 +437,7 @@ def employee_info(request):
 
 
 def employees(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     output = Employee.objects.all()
     if request.method == "POST":
@@ -458,7 +458,7 @@ def employees(request):
 
 
 def hiring(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     output = Hiring.objects.all()
     if request.method == "POST":
@@ -475,7 +475,7 @@ def hiring(request):
 
 
 def roles(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     output = Role.objects.all()
     if request.method == "POST":
@@ -494,7 +494,7 @@ def roles(request):
 
 
 def positions(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     output = Position.objects.all()
     if request.method == "POST":
@@ -509,7 +509,7 @@ def positions(request):
 
 
 def roles_list(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     output = Roles.objects.all()
     if request.method == "POST":
@@ -525,7 +525,7 @@ def roles_list(request):
 
 
 def create_employee(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = EmployeeForm()
     error = ''
@@ -545,7 +545,7 @@ def create_employee(request):
 
 
 def create_position(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = PositionForm()
     error = ''
@@ -565,7 +565,7 @@ def create_position(request):
 
 
 def create_role(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = RoleForm()
     error = ''
@@ -585,7 +585,7 @@ def create_role(request):
 
 
 def create_role_list(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = RoleListForm()
     error = ''
@@ -605,7 +605,7 @@ def create_role_list(request):
 
 
 def create_hiring(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = HiringForm()
     error = ''

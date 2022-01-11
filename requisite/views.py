@@ -6,13 +6,13 @@ from .filters import RequisiteTypeFilter, RequisiteFilter
 
 
 def main(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     return render(request, "Requisite/main.html")
 
 
 def requisite(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     output = Requisite.objects.all()
     typeFilter = RequisiteTypeFilter(request.GET, queryset=output)
@@ -21,7 +21,7 @@ def requisite(request):
 
 
 def requisite_history(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     output = RequisiteHistory.objects.all()
     requisiteFilter = RequisiteFilter(request.GET, queryset=output)
@@ -31,7 +31,7 @@ def requisite_history(request):
 
 
 def requisite_poster_role(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     output = RequisitePosterRole.objects.all()
     requisiteFilter = RequisiteFilter(request.GET, queryset=output)
@@ -41,7 +41,7 @@ def requisite_poster_role(request):
 
 
 def create_requisite_type(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = RequisiteTypeForm()
     error = ''
@@ -61,7 +61,7 @@ def create_requisite_type(request):
 
 
 def create_requisite(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = RequisiteForm()
     error = ''
@@ -81,7 +81,7 @@ def create_requisite(request):
 
 
 def create_requisite_his(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = RequisiteHisForm()
     error = ''
@@ -101,7 +101,7 @@ def create_requisite_his(request):
 
 
 def create_requisite_role(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     form = RequisiteRoleForm()
     error = ''

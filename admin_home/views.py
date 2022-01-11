@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.db.models.functions import TruncMonth, ExtractMonth
+from django.db.models.functions import TruncMonth, ExtractMonth, ExtractYear
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum, DateField
+import datetime
 
 from employees.models import Role
 from requisite.models import RequisitePosterRole
@@ -38,8 +39,10 @@ def salary(request, pk):
 
     #result = Role.objects.values_list('poster_id__date__month', 'poster_id_date__year').annotate(totale=Sum('fee')).values_list('poster_id_date__year')
 
+    #result = Role.objects.annotate(month=ExtractMonth('poster_id__date'), year=ExtractYear('poster_id__date'))
+
     #result = Role.objects.annotate(date=TruncMonth('poster_id__date')).values('date').annotate(salary=Sum('fee'))
-    result = Role.objects.filter(employee_id_id=pk).values('poster_id__date').annotate(salary=Sum('fee'))
+    result = Role.objects.filter(employee_id_id=pk).values('poster_id__date'.month).annotate(salary=Sum('fee'))
     #result = (roles.values_list('poster_id__date', 'fee').annotate(salary=Sum('fee')).order_by('poster_id__date'))
     #roles = (roles.order_by('poster_id__date').values('poster_id__date__month').aggregate(salary=Sum('fee')))
     data = {'roles': result}
