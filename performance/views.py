@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 
 from .forms import PerformanceForm, PerformanceOnGoingForm
-from .models import Performance, Poster
+from .models import Performance, Poster, Tier
 from django.views.generic import DetailView, UpdateView, DeleteView
+from ticketStore.models import Ticket
 
 
 def main(request):
@@ -79,7 +80,6 @@ def performance_on_going(request):
     if request.session['position'] != 2:
         return redirect('authorization')
     poster = Poster.objects.all()
-    print(poster[0].date)
     return render(request, 'performance/performance_on_going.html', {'poster': poster})
 
 
@@ -105,13 +105,30 @@ def sort_performance_on_going(request, pk):
     return render(request, "performance/performance_on_going.html", {"poster": posters})
 
 
+def create_tickets(poster: Poster):
+    tiers = Tier.objects.filter(hall_id=poster.hall_id)
+    i = 1
+
+    for tier in tiers:
+        for seat in range(1, tier.number_of_seats + 1):
+            Ticket(
+                price=poster.performance_id.price,
+                place=i,
+                availability=True,
+                poster_id=poster,
+                tier_id=tier
+            ).save()
+            i += 1
+
+
 def create_performance_on_going(request):
     form = PerformanceOnGoingForm()
     error = ''
     if request.method == "POST":
         form = PerformanceOnGoingForm(request.POST)
         if form.is_valid():
-            form.save()
+            poster = form.save()
+            create_tickets(poster)
             return redirect('performance_on_going')
         else:
             error = 'Wrong values!'
