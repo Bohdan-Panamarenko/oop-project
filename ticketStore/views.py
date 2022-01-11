@@ -64,11 +64,11 @@ def ticketStore_performance(request, pk=None):
 
 def ticketStore_order(request, pk, pkt=None):
     tickets_const = Ticket.objects.order_by('place')
-    performances = Performance.objects.order_by('id')
+    performances = Poster.objects.order_by('id')
     for el in tickets_const:
         if el.place == pkt and el.poster_id_id == pk:
             tickets_const.filter(place=pkt, poster_id_id=pk).update(availability=0)
-            performance = performances.get(id=pk).name
+            performance = performances.get(id=pk).performance_id.name
             if not [performance, pkt] in tickets_order:
                 tickets_order.append([performance, pkt])
                 globals()['tick'] += 1
