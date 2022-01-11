@@ -2,8 +2,6 @@ from django.db import models
 from django.core.validators import MinValueValidator, RegexValidator, DecimalValidator
 import performance.models
 from phone_field import PhoneField
-from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
-from project import settings
 
 
 class Ticket(models.Model):
