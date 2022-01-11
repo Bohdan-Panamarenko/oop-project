@@ -9,7 +9,7 @@ from requisite.models import RequisitePosterRole
 
 
 def admin(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     return render(request, 'admin_main.html')
 
