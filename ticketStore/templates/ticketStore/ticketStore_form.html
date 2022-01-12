@@ -94,7 +94,7 @@
                     <h5>{{ forloop.counter }}) Performance: {{ i.0 }}, place: {{ i.1 }}</h5>
                 {% endfor %}
             {% endif %}
-            <h1>Форма придбання квитків</h1>
+            <h1>Ticket purchase form</h1>
             <form method="post">
                 {% csrf_token %}
                 {{ form.name }}<br>
@@ -104,7 +104,7 @@
                 {{ form.cc_expiry }}<br>
                 {{ form.cc_code }}<br>
                 <span>{{ error }}</span>
-                <button class="btn btn-success" type="submit"> Замовити </button>
+                <button class="btn btn-success" type="submit"> Order </button>
             </form>
         </div>
 {% endblock %}

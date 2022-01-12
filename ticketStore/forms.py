@@ -13,26 +13,26 @@ class OrderForm(ModelForm):
         widgets = {
             'name': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Им`я покупця'
+                'placeholder': 'Surname Name'
             }),
             'phone': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Номер телефону'
+                'placeholder': 'Phone number'
             }),
             'mail': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Поштова адреса'
+                'placeholder': 'Email'
             }),
             'cc_number': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Номер картки'
+                'placeholder': 'Card number'
             }),
             'cc_expiry': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Дата сроку картки(12/21)'
+                'placeholder': 'Expiry date'
             }),
             'cc_code': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'CVC код'
+                'placeholder': 'CVC code'
             }),
         }

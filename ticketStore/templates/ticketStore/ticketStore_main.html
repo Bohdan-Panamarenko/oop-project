@@ -28,9 +28,9 @@
         }
     </style>
     <h1>TicketStore <a href="{% url 'ticketStore_hot' %}"><button class="btn btn-warning">Hot tickets</button></a></h1>
-    <a href="{% url 'performance_filter' pk=1 %}"><button>С-ння за ціною</button></a>
-    <a href="{% url 'performance_filter' pk=2 %}"><button>С-ння за тривалістю</button></a>
-    <a href="{% url 'performance_filter' pk=3 %}"><button>С-ння за датою</button></a>
+    <a href="{% url 'performance_filter' pk=1 %}"><button>Sort by price</button></a>
+    <a href="{% url 'performance_filter' pk=2 %}"><button>Sort by duration</button></a>
+    <a href="{% url 'performance_filter' pk=3 %}"><button>Sort by date</button></a>
     <form method="get">
         {{myFilter.form}}
         <button class="btn btn-primary" type="submit">Search</button>
