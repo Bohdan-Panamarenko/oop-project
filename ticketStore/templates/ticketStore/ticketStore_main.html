@@ -4,12 +4,6 @@
 
 {% block content %}
     <style>
-        .features {
-            color: #dce3fa;
-            margin-top: 10px;
-            text-align: center;
-            width: 75%;
-        }
         .alert-warning {
             clear: both;
             width: 800px;
@@ -22,8 +16,8 @@
             color: #dce3fa;
         }
         form {
-            width: 400px;
-            margin-top: 40px;
+            width: 500px;
+            margin-top: 20px;
             color: #dce3fa;
         }
     </style>
@@ -35,17 +29,23 @@
          Performance name: {{myFilter.form.performance_id__name}}
         <button class="btn btn-primary" type="submit">Search</button>
     </form>
-    <div class="features">
+    <div align="center" >
         {% if poster %}
             {% for el in poster %}
-                <div class="alert-warning">
+                <div style="
+                width: 100%; max-width: 500px;
+                color: black; background-color: #CDBEA7;
+                padding: 5px 10px; border-radius: 20px;
+                margin-top:10px; text-align: left;
+                line-height: 0.75;">
                     <h3>{{ el.performance_id.name }}</h3>
                     <h5>Author: {{ el.performance_id.author }}</h5>
                     <p>{{ el.performance_id.description }}</p>
                     <p>Date: {{ el.date }}</p>
                     <p>Duration: {{ el.performance_id.duration }}</p>
                     <p>Price: {{ el.performance_id.price }}</p>
-                    <p><a href="{% url 'ticketStore_performance' el.id %}"><button class="btn btn-warning">Buy tickets</button></a></p>
+                    <p style="text-align: center;"><a href="{% url 'ticketStore_performance' el.id %}"><button class="btn btn-warning">
+                        Buy tickets</button></a></p>
                 </div>
 
             {% endfor %}
