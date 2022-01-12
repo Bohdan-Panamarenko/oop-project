@@ -14,6 +14,8 @@ from datetime import date
 # Create your views here.
 global ticket_order
 tickets_order = []
+global ticket_order_for_order
+ticket_order_for_order = []
 global tick
 globals()['tick'] = 0
 global order_price
@@ -64,12 +66,13 @@ def ticketStore_performance(request, pk=None):
 
 def ticketStore_order(request, pk, pkt=None):
     tickets_const = Ticket.objects.order_by('place')
-    performances = Poster.objects.order_by('id')
+    performances = Performance.objects.order_by('id')
     for el in tickets_const:
         if el.place == pkt and el.poster_id_id == pk:
             tickets_const.filter(place=pkt, poster_id_id=pk).update(availability=0)
-            performance = performances.get(id=pk).performance_id.name
+            performance = performances.get(id=pk).name
             if not [performance, pkt] in tickets_order:
+                ticket_order_for_order.append([pk, pkt])
                 tickets_order.append([performance, pkt])
                 globals()['tick'] += 1
                 globals()['order_price'] += tickets_const.get(place=pkt, poster_id_id=pk).price
@@ -78,16 +81,12 @@ def ticketStore_order(request, pk, pkt=None):
                                                                   'tick': tick, 'order_price': order_price})
 
 
-def ordersList(request):
-    if request.session['position'] != 2:
-        return redirect('authorization')
-    orders = Order.objects.all()
-    return render(request, 'ticketStore/orders_list.html', {'orders': orders})
-
-
 def ticketStore_form(request):
     error = ''
     tickets_const = Ticket.objects.all()
+    numpy_array0 = np.array(ticket_order_for_order)
+    transpose0 = numpy_array0.T
+    ticket_order_for_order_list = transpose0.tolist()
     numpy_array = np.array(tickets_order)
     transpose = numpy_array.T
     tickets_order_output = transpose.tolist()
@@ -108,22 +107,22 @@ def ticketStore_form(request):
                 Ticket_ordered.objects.create(
                     order=order,
                     place=tickets_order_output[1][i],
-                    poster_id_id=tickets_const.get(place=tickets_order_output[1][i],
-                                                   poster_id_id=tickets_order_output[0][i]).poster_id_id,
-                    price=tickets_const.get(place=tickets_order_output[1][i],
-                                            poster_id_id=tickets_order_output[0][i]).price,
-                    tier_id=tickets_const.get(place=tickets_order_output[1][i],
-                                              poster_id_id=tickets_order_output[0][i]).tier_id_id)
+                    poster_id_id=tickets_const.get(place=ticket_order_for_order_list[1][i],
+                                                   poster_id_id=ticket_order_for_order_list[0][i]).poster_id_id,
+                    price=tickets_const.get(place=ticket_order_for_order_list[1][i],
+                                            poster_id_id=ticket_order_for_order_list[0][i]).price,
+                    tier_id=tickets_const.get(place=ticket_order_for_order_list[1][i],
+                                              poster_id_id=ticket_order_for_order_list[0][i]).tier_id_id)
             tickets_order.clear()
             globals()['tick'] = 0
             globals()['order_price'] = 0
             return redirect('ticketStore_main')
         else:
-            error = 'The order form is incorrect'
+            error = 'Замовлення заповненно некоректно'
     form = OrderForm()
     return render(request, 'ticketStore/ticketStore_form.html',
                   {'form': form, 'error': error, 'tickets_order': tickets_order,
-                   'order_price': order_price, 'posters_form': posters_form,
+                   'order_price': order_price, 'posters_form': posters_form, 'tickets_order_output': tickets_order_output,
                    'range_order': range(int(range_order)), 'tickets_order_output_numpy_array': tickets_order_output_numpy_array})
 
 
@@ -139,7 +138,15 @@ def performance_filter(request, pk):
     poster = myFilter.qs
     return render(request, 'ticketStore/ticketStore_main.html', {'poster': poster, 'myFilter': myFilter})
 
+
+def ordersList(request):
+    if request.session['position'] != 2:
+        return redirect('authorization')
+    orders = Order.objects.all()
+    return render(request, 'ticketStore/orders_list.html', {'orders': orders})
+
+
 class OrdersDeleteView(DeleteView):
     model = Order
-    template_name = 'orders/orders_delete.html'
+    template_name = 'ticketStore/orders_delete.html'
     success_url = '/orders/'

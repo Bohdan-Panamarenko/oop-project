@@ -13,4 +13,5 @@ urlpatterns = [
     path('employees/', include('employees.urls')),
     path('admin_home/', include('admin_home.urls')),
     path('orders/', views.ordersList, name='orders'),
+    path('orders/<int:pk>/delete/', views.OrdersDeleteView.as_view(), name='orders_delete'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

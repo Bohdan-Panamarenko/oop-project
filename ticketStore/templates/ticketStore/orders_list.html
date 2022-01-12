@@ -26,13 +26,13 @@
     {% for order in orders %}
     <div>
         <tr style="color: #fff">
-        <th scope="col">{{el.name}}</th>
-        <th scope="col">{{el.phone}}</th>
-        <th scope="col">{{el.mail}}</th>
-        <th scope="col">{{el.date}}</th>
-        <th scope="col">{{el.price}}</th>
-        <th scope="col">{{el.cc_number|slice:"4:"}}**..{{el.cc_number|slice:"-2:"}}</th>
-        <th><a href="{% url 'orders_delete' el.id %}" class="btn btn-danger">Delete</a></th>
+        <th scope="col">{{order.name}}</th>
+        <th scope="col">{{order.phone}}</th>
+        <th scope="col">{{order.mail}}</th>
+        <th scope="col">{{order.date}}</th>
+        <th scope="col">{{order.price}}</th>
+        <th scope="col">{{order.cc_number|make_list|slice:":4"|join:''}}**..{{order.cc_number|make_list|slice:"-2:"|join:''}}</th>
+        <th><a href="{% url 'orders_delete' order.id %}" class="btn btn-danger">Delete</a></th>
         </tr>
     </div>
     {% endfor %}
