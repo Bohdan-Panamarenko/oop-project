@@ -119,7 +119,7 @@ def ticketStore_form(request):
             globals()['order_price'] = 0
             return redirect('ticketStore_main')
         else:
-            error = 'Замовлення заповненно некоректно'
+            error = 'The order form is incorrect'
     form = OrderForm()
     return render(request, 'ticketStore/ticketStore_form.html',
                   {'form': form, 'error': error, 'tickets_order': tickets_order,
