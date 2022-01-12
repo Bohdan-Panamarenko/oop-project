@@ -78,6 +78,13 @@ def ticketStore_order(request, pk, pkt=None):
                                                                   'tick': tick, 'order_price': order_price})
 
 
+def ordersList(request):
+    if request.session['position'] != 2:
+        return redirect('authorization')
+    orders = Order.objects.all()
+    return render(request, 'ticketStore/orders_list.html', {'orders': orders})
+
+
 def ticketStore_form(request):
     error = ''
     tickets_const = Ticket.objects.all()
