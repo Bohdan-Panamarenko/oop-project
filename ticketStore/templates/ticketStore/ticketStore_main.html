@@ -32,7 +32,7 @@
     <a href="{% url 'performance_filter' pk=2 %}"><button>Sort by duration</button></a>
     <a href="{% url 'performance_filter' pk=3 %}"><button>Sort by date</button></a>
     <form method="get">
-        {{myFilter.form}}
+        {{Performance name: myFilter.form.performance_id__name}}
         <button class="btn btn-primary" type="submit">Search</button>
     </form>
     <div class="features">
