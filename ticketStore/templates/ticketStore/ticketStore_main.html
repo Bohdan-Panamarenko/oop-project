@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
 
 {% block title %}Performances{% endblock %}
+{% block header %}Performances{% endblock %}
 
 {% block content %}
     <style>
-        .alert-warning {
-            clear: both;
-            width: 800px;
-            margin: 10px 50%;
-            text-align: left;
-        }
         h1 {
             align: centre;
             float: centre;
@@ -21,7 +16,8 @@
             color: #dce3fa;
         }
     </style>
-    <h1>TicketStore <a href="{% url 'ticketStore_hot' %}"><button class="btn btn-warning">Hot tickets</button></a></h1>
+<div align="center">
+    <p> <a href="{% url 'ticketStore_hot' %}"><button class="btn btn-warning">Hot tickets</button></a> </p>
     <a href="{% url 'performance_filter' pk=1 %}"><button>Sort by price</button></a>
     <a href="{% url 'performance_filter' pk=2 %}"><button>Sort by duration</button></a>
     <a href="{% url 'performance_filter' pk=3 %}"><button>Sort by date</button></a>
@@ -29,6 +25,7 @@
          Performance name: {{myFilter.form.performance_id__name}}
         <button class="btn btn-primary" type="submit">Search</button>
     </form>
+    </div>
     <div align="center" >
         {% if poster %}
             {% for el in poster %}
