@@ -4,7 +4,7 @@ from .models import Ticket, Ticket_ordered, Order
 from performance.models import *
 from django.urls import reverse_lazy
 from django.db.models import Q
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView, TemplateView, DeleteView
 from django.views.generic.base import View
 from .forms import OrderForm
 from .filters import PerformanceFilter, PosterFilter
@@ -138,3 +138,8 @@ def performance_filter(request, pk):
     myFilter = PosterFilter(request.GET, queryset=poster)
     poster = myFilter.qs
     return render(request, 'ticketStore/ticketStore_main.html', {'poster': poster, 'myFilter': myFilter})
+
+class OrdersDeleteView(DeleteView):
+    model = Order
+    template_name = 'orders/orders_delete.html'
+    success_url = '/orders/'

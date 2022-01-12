@@ -9,4 +9,5 @@ urlpatterns = [
     path('form', views.ticketStore_form, name='ticketStore_form'),
     path('filter/<int:pk>', views.performance_filter, name='performance_filter'),
     path('<str:pk>', views.ticketStore_main, name='ticketStore_main'),
+    path('orders/<int:pk>/delete/', views.OrdersDeleteView.as_view(), name='orders_delete'),
 ]

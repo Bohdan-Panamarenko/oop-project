@@ -32,8 +32,7 @@
         <th scope="col">{{el.date}}</th>
         <th scope="col">{{el.price}}</th>
         <th scope="col">{{el.cc_number|slice:"4:"}}**..{{el.cc_number|slice:"-2:"}}</th>
-        {# <th><a href="{% url 'requisite_delete' el.id %}" class="btn btn-danger">Delete</a></th> #}
-        {# <th><a href="{% url 'requisite_update' el.id %}" class="btn btn-info">Update</a></th> #}
+        <th><a href="{% url 'orders_delete' el.id %}" class="btn btn-danger">Delete</a></th>
         </tr>
     </div>
     {% endfor %}
