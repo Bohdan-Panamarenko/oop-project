@@ -9,12 +9,12 @@
 <form method="post">
         <div style="left:40%; position:fixed; font-size:18px; color: white">
         {% csrf_token %}
-        Назва: {{ performance.name }}<br><br>
-        Опис: {{ performance.description }}<br><br>
-        Тривалість: {{ performance.duration }}<br><br>
-        Ціна: {{ performance.price }}<br><br>
-        Жанр: {{ performance.genre_id.genre }}<br><br>
-        Мінімальний вік глядача: {{ performance.rating_id.min_age }}<br><br>
+        <p>Name: {{ performance.name }}</p>
+        <p>Description: {{ performance.description }}</p>
+        <p>Duration: {{ performance.duration }}</p>
+        <p>Price: {{ performance.price }}</p>
+        <p>Genre: {{ performance.genre_id.genre }}</p>
+        <p>Minimal age: {{ performance.rating_id.min_age }}</p>
         <span>{{ error }}</span>
                 <a href="{% url 'performance_update' performance.id %}" class="btn btn-info">Edit</a>
                 <a href="{% url 'performance_delete' performance.id %}" class="btn btn-danger">Delete</a>
