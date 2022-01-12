@@ -22,7 +22,7 @@ class Ticket(models.Model):
 
 class Order(models.Model):
     name = models.CharField('Name', max_length=64,
-                        validators=[RegexValidator(regex='^[A-Z][a-z]*(-[A-Z]?[a-z]+)? [A-Z][a-z]*(-[A-Z]?[a-z]+)?$')])
+             validators=[RegexValidator(regex='^[А-яІ][а-яі]*(-[А-ЯІ]?[а-яі]+)? [А-ЯІ][а-яі]*(-[А-ЯІ]?[а-яі]+)?$')])
     phone = PhoneField('Phone',
                        validators=[RegexValidator(regex='^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$')])
     mail = models.CharField('Mail', max_length=64,
