@@ -104,7 +104,6 @@ def ticketStore_form(request):
             order = orders[0]
             Order.objects.filter(id=order.id).update(price=order_price)
             Order.objects.filter(id=order.id).update(date=date1)
-            # [[1,1,1], [38,39,40]]
             for i in range(len(tickets_order_output[1])):
                 Ticket_ordered.objects.create(
                     order=order,
