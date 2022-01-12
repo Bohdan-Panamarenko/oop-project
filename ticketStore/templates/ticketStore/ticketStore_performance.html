@@ -50,6 +50,12 @@
             pointer-events: none;
             opacity: 0.6;
         }
+        .btn-not-availability-order {
+            pointer-events: none;
+            opacity: 0.6;
+            width: 80px;
+            background-color: red;
+        }
 
         form {
             width: 400px;
@@ -79,11 +85,12 @@
         <div class="alert ticketStore-warning">
             {% if not tickets_order %}
                 <p>Cart is empty</p>
+                <a href="{% url 'ticketStore_form' %}"><button class="button btn-not-availability-order">Order</button></a>
             {% else %}
                 <p>{{ tick }} tickets in cart</p>
                 <h6>Price: {{ order_price }}</h6>
+                <a href="{% url 'ticketStore_form' %}"><button class="btn btn-warning">Order</button></a>
             {% endif %}
-            <a href="{% url 'ticketStore_form' %}"><button class="btn btn-warning">Order</button></a>
         </div>
         {% if tickets %}
             {% for el in tickets %}
