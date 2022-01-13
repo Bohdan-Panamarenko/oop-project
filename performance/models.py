@@ -23,7 +23,7 @@ class Performance(models.Model):
     rating_id = models.ForeignKey(Rating, null=True, on_delete=models.SET_NULL)
     description = models.TextField('Description of performance')
     author = models.CharField('Author', max_length=64)
-    duration = models.DurationField('Duration of performance')
+    duration = models.TextField('Duration of performance')
     genre_id = models.ForeignKey(Genre, null=True, on_delete=models.SET_NULL)
     price = models.DecimalField('Price', decimal_places=2, max_digits=10, validators=[
         validators.MinValueValidator(0.01)

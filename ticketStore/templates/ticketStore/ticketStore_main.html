@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
 
 {% block title %}Performances{% endblock %}
 {% block header %}Performances{% endblock %}
@@ -39,7 +40,7 @@
                     <h5>Author: {{ el.performance_id.author }}</h5>
                     <p>{{ el.performance_id.description }}</p>
                     <p>Date: {{ el.date }}</p>
-                    <p>Duration: {{ el.performance_id.duration }}</p>
+                    <p>Duration: {{ el.performance_id.duration|div:60|floatformat:1 }} hrs</p>
                     <p>Price: {{ el.performance_id.price }}</p>
                     <p style="text-align: center;"><a href="{% url 'ticketStore_performance' el.id %}"><button class="btn btn-warning">
                         Buy tickets</button></a></p>

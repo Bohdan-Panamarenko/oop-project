@@ -1,21 +1,10 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
 
 {% block title %}Performances{% endblock %}
 
 {% block content %}
     <style>
-        .features {
-            color: #dce3fa;
-            margin-top: 10px;
-            text-align: center;
-            width: 75%;
-        }
-        .alert-warning {
-            clear: both;
-            width: 600px;
-            margin: 10px 50%;
-            text-align: left;
-        }
         h1 {
             float: centre;
             color: #dce3fa;
@@ -24,17 +13,22 @@
         }
     </style>
     <h1>Hot tickets <a href="{% url 'ticketStore_main' %}"><button class="btn btn-warning">TicketStore</button></a></h1>
-    <div class="features">
+    <div align="center">
         {% if poster %}
             {% for h in hot_posters_id %}
                 {% for el in poster %}
                     {% if el.id == h %}
-                        <div class="alert-warning">
+                        <div style="
+                width: 100%; max-width: 500px;
+                color: black; background-color: #CDBEA7;
+                padding: 5px 10px; border-radius: 20px;
+                margin-top:10px; text-align: left;
+                line-height: 0.75;">
                             <h3>{{ el.performance_id.name }}</h3>
                             <h5>Author: {{ el.performance_id.author }}</h5>
                             <p>{{ el.performance_id.description }}</p>
                             <p>Date: {{ el.date }}</p>
-                            <p>Duration: {{ el.performance_id.duration }}</p>
+                            <p>Duration: {{ el.performance_id.duration|div:60|floatformat:1 }} hrs</p>
                             <p>Price: {{ el.performance_id.price }}</p>
                             <p><a href="{% url 'ticketStore_performance' el.id %}"><button class="btn btn-warning">Buy tickets</button></a></p>
                         </div>
@@ -42,7 +36,7 @@
                 {% endfor %}
             {% endfor %}
         {% else %}
-            <p>no hot performances yet</p>
+            <p>No hot performances yet</p>
         {% endif %}
     </div>
 

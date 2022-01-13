@@ -96,11 +96,13 @@
             {% else %}
                 {% for i in tickets_order_output_numpy_array %}
                     {% if not i.3 == 1 %}
-                        <h5>{{ forloop.counter }}) Performance: {{ i.1 }}, place: {{ i.2 }}<a href="{% url 'ticketStore_cancel' pk=i.0 pkt=i.2%}"><button class="button btn-delete">delete</button></a></h5>
+                        <h5>{{ forloop.counter }}) Performance: {{ i.1 }}, place: {{ i.2 }}
+                            &nbsp;<a href="{% url 'ticketStore_cancel' pk=i.0 pkt=i.2%}"><button class="btn btn-danger"
+                            style="line-height: 0.8;">Delete</button></a></h5>
                     {% endif %}
                 {% endfor %}
             {% endif %}
-            <h1>Форма придбання квитків</h1>
+            <h1>Order purchase form</h1>
             <form method="post">
                 {% csrf_token %}
                 {{ form.name }}<br>

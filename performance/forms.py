@@ -10,7 +10,7 @@ class PerformanceForm(ModelForm):
         widgets = {
             'name': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Назва'
+                'placeholder': 'Name'
             }),
             'rating_id': Select(
                 attrs={
@@ -19,15 +19,15 @@ class PerformanceForm(ModelForm):
             ),
             'description': Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': 'Опис'
+                'placeholder': 'Description'
             }),
             'author': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Автор'
+                'placeholder': 'Author'
             }),
             'duration': TimeInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Тривалість'
+                'placeholder': 'Duration'
             }),
             'genre_id': Select(
                 attrs={
@@ -36,7 +36,7 @@ class PerformanceForm(ModelForm):
             ),
             'price': NumberInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Ціна'
+                'placeholder': 'Price'
             })
         }
 
@@ -51,7 +51,7 @@ class PerformanceOnGoingForm(ModelForm):
             }),
             'date': DateTimeInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Дата та час у форматі yyyy-mm-dd hh:mm'
+                'placeholder': 'Date and time yyyy-mm-dd hh:mm'
             }),
             'hall_id': Select(attrs={
                 'class': 'form-control'

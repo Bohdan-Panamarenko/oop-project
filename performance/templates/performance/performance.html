@@ -1,5 +1,6 @@
 
 {% extends 'base_admin.html' %}
+{% load mathfilters %}
 
 {% block title %}Performances{% endblock %}
 
@@ -31,7 +32,7 @@
                     <h3>{{ el.name }}</h3>
                     <h5>Author: {{ el.author }}</h5>
                     <p>Description: {{ el.description }}</p>
-                    <p>Duration: {{ el.duration }}</p>
+                    <p>Duration: {{ el.duration|div:60|floatformat:1 }} hrs</p>
                     <p>Price: {{ el.price }}</p>
                     <p>Genre: {{ el.genre_id.genre }}</p>
                     <p>Minimal age: {{ el.rating_id.min_age }}</p>

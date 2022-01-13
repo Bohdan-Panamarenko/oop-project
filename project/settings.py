@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'requisite',
     'ticketStore',
     'phone_field',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
