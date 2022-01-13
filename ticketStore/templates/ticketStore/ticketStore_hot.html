@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load mathfilters %}
 
-{% block title %}Performances{% endblock %}
+{% block title %}Hot tickets{% endblock %}
+{% block header %}<a href="{% url 'ticketStore_main' %}" style="color: #fff">Performances</a>{% endblock %}
 
 {% block content %}
     <style>
@@ -12,7 +13,7 @@
             text-align: centre;
         }
     </style>
-    <h1>Hot tickets <a href="{% url 'ticketStore_main' %}"><button class="btn btn-warning">TicketStore</button></a></h1>
+    <h1 align="center">Hot tickets</button></h1>
     <div align="center">
         {% if poster %}
             {% for h in hot_posters_id %}

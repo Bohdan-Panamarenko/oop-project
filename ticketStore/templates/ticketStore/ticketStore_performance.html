@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}TicketStore{% endblock %}
-
+{% block header %}<a href="{% url 'ticketStore_main' %}" style="color: #fff">Performances</a>{% endblock %}
 {% block content %}
     <h1>TicketStore <a href="{% url 'ticketStore_hot' %}"><button class="btn btn-warning">Hot tickets</button></a></h1>
     <br>
