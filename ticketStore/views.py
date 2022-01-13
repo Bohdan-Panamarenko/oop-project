@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.views.generic import ListView, DetailView, TemplateView, DeleteView
 from django.views.generic.base import View
 from .forms import OrderForm
-from .filters import PerformanceFilter, PosterFilter
+from .filters import PerformanceFilter, PosterFilter, OrderFilter
 import numpy as np
 from datetime import datetime, timedelta, date
 import pytz
@@ -166,7 +166,9 @@ def ordersList(request):
     if request.session['position'] != 2 and request.session['position'] != 7:
         return redirect('authorization')
     orders = Order.objects.all()
-    return render(request, 'ticketStore/orders_list.html', {'orders': orders, 'data': request.session['position']})
+    orderFilter = OrderFilter(request.GET, queryset=orders)
+    orders = orderFilter.qs
+    return render(request, 'ticketStore/orders_list.html', {'orders': orders, 'data': request.session['position'], 'orderFilter': orderFilter},)
 
 
 class OrdersDeleteView(DeleteView):
