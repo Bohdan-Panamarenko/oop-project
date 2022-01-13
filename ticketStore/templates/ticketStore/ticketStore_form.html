@@ -59,7 +59,11 @@
             opacity: 0.6;
             cursor: not-allowed;
         }
-
+        .btn-delete {
+            height: 30px;
+            width: 80px;
+            background-color: red;
+        }
         form {
             width: 400px;
             margin-top: 40px;
@@ -91,10 +95,12 @@
                 <p>Cart is empty</p>
             {% else %}
                 {% for i in tickets_order_output_numpy_array %}
-                    <h5>{{ forloop.counter }}) Performance: {{ i.0 }}, place: {{ i.1 }}</h5>
+                    {% if not i.3 == 1 %}
+                        <h5>{{ forloop.counter }}) Performance: {{ i.1 }}, place: {{ i.2 }}<a href="{% url 'ticketStore_cancel' pk=i.0 pkt=i.2%}"><button class="button btn-delete">delete</button></a></h5>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
-            <h1>Ticket purchase form</h1>
+            <h1>Форма придбання квитків</h1>
             <form method="post">
                 {% csrf_token %}
                 {{ form.name }}<br>
@@ -104,7 +110,7 @@
                 {{ form.cc_expiry }}<br>
                 {{ form.cc_code }}<br>
                 <span>{{ error }}</span>
-                <button class="btn btn-success" type="submit"> Order </button>
+                <button class="btn btn-success" type="submit"> Замовити </button>
             </form>
         </div>
 {% endblock %}

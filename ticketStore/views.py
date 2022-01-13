@@ -9,8 +9,9 @@ from django.views.generic.base import View
 from .forms import OrderForm
 from .filters import PerformanceFilter, PosterFilter
 import numpy as np
-from datetime import date
-
+from datetime import datetime, timedelta, date
+import pytz
+utc = pytz.UTC
 # Create your views here.
 global ticket_order
 tickets_order = []
@@ -28,8 +29,8 @@ def ticketStore_main(request, pk=None):
         numpy_array = np.array(tickets_order)
         transpose = numpy_array.T
         tickets_order_output = transpose.tolist()
-        for poster_el in tickets_order_output[0]:
-            for place_el in tickets_order_output[1]:
+        for poster_el in tickets_order_output[1]:
+            for place_el in tickets_order_output[2]:
                 tickets_const.filter(place=place_el, poster_id_id__performance_id_id__name=poster_el).update(availability=1)
         tickets_order.clear()
         globals()['tick'] = 0
@@ -40,21 +41,18 @@ def ticketStore_main(request, pk=None):
     return render(request, 'ticketStore/ticketStore_main.html', {'poster': poster, 'myFilter': myFilter})
 
 
-def ticketStore_add(request):
-    pass
-
-
-def ticketStore_delete(request):
-    pass
-
-
 def ticketStore_hot(request):
-    today = date.today()
-    d = today.strftime("%Y/%m/%d")
-    performances = Performance.objects.order_by('-price')
+    now = datetime.now()
+    date_today = now.strftime("%Y-%m-%d %H:%M")
     poster = Poster.objects.order_by('id')
-    return render(request, 'ticketStore/ticketStore_hot.html',
-                  {'performances': performances, 'poster': poster, 'date': d})
+    hot_posters_id = []
+    for p in poster:
+        now_time = now.replace(tzinfo=utc)
+        p_time = p.date.replace(tzinfo=utc)
+        if now_time < p_time - timedelta(days=7):
+            hot_posters_id.append(p.id)
+    return render(request, 'ticketStore/ticketStore_hot.html', {'poster': poster, 'date_today': date_today,
+                                                                'hot_posters_id': hot_posters_id})
 
 
 def ticketStore_performance(request, pk=None):
@@ -71,14 +69,39 @@ def ticketStore_order(request, pk, pkt=None):
         if el.place == pkt and el.poster_id_id == pk:
             tickets_const.filter(place=pkt, poster_id_id=pk).update(availability=0)
             performance = performances.get(id=pk).name
-            if not [performance, pkt] in tickets_order:
+            if not [pk, performance, pkt, 1] in tickets_order:
                 ticket_order_for_order.append([pk, pkt])
-                tickets_order.append([performance, pkt])
+                tickets_order.append([pk, performance, pkt, 1])
                 globals()['tick'] += 1
                 globals()['order_price'] += tickets_const.get(place=pkt, poster_id_id=pk).price
     return render(request, 'ticketStore/ticketStore_order.html', {'tickets': tickets_const, 'pk': pk, 'pkt': pkt,
                                                                   'tickets_order': tickets_order,
                                                                   'tick': tick, 'order_price': order_price})
+
+
+def ticketStore_cancel(request, pk, pkt):
+    if int(len(tickets_order)) == 1:
+        tickets_const = Ticket.objects.order_by('place')
+        performances = Performance.objects.order_by('id')
+        tickets_const.filter(place=pkt, poster_id_id=pk).update(availability=1)
+        performance = performances.get(id=pk).name
+        if [pk, performance, pkt, 1] in tickets_order:
+            ticket_order_for_order.remove([pk, pkt])
+            tickets_order.remove([pk, performance, pkt, 1])
+            globals()['tick'] -= 1
+            globals()['order_price'] -= tickets_const.get(place=pkt, poster_id_id=pk).price
+        return ticketStore_main(request)
+    else:
+        tickets_const = Ticket.objects.order_by('place')
+        performances = Performance.objects.order_by('id')
+        tickets_const.filter(place=pkt, poster_id_id=pk).update(availability=1)
+        performance = performances.get(id=pk).name
+        if [pk, performance, pkt, 1] in tickets_order:
+            ticket_order_for_order.remove([pk, pkt])
+            tickets_order.remove([pk, performance, pkt, 1])
+            globals()['tick'] -= 1
+            globals()['order_price'] -= tickets_const.get(place=pkt, poster_id_id=pk).price
+        return ticketStore_form(request)
 
 
 def ticketStore_form(request):
@@ -103,6 +126,7 @@ def ticketStore_form(request):
             order = orders[0]
             Order.objects.filter(id=order.id).update(price=order_price)
             Order.objects.filter(id=order.id).update(date=date1)
+            # [[1,1,1], [38,39,40], [1,1,1]]
             for i in range(len(tickets_order_output[1])):
                 Ticket_ordered.objects.create(
                     order=order,
@@ -137,7 +161,6 @@ def performance_filter(request, pk):
     myFilter = PosterFilter(request.GET, queryset=poster)
     poster = myFilter.qs
     return render(request, 'ticketStore/ticketStore_main.html', {'poster': poster, 'myFilter': myFilter})
-
 
 def ordersList(request):
     if request.session['position'] != 2:

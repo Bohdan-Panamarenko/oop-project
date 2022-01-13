@@ -25,22 +25,24 @@
     </style>
     <h1>Hot tickets <a href="{% url 'ticketStore_main' %}"><button class="btn btn-warning">TicketStore</button></a></h1>
     <div class="features">
-        {% if performances %}
-            {% for el in performances %}
-                {% if el.id == 1 %}
-                    <div class="alert-warning">
-                        <h3>{{ el.name }}</h3>
-                        <h5>Author: {{ el.author }}</h5>
-                        <p>Date: 30/12/2021</p>
-                        <p>{{ el.description }}</p>
-                        <p>Duration: {{ el.duration }}</p>
-                        <p>Price: {{ el.price }}</p>
-                        <p><a href="{% url 'ticketStore_performance' el.id %}"><button class="btn btn-warning">Buy tickets</button></a></p>
-                    </div>
-                {% endif %}
+        {% if poster %}
+            {% for h in hot_posters_id %}
+                {% for el in poster %}
+                    {% if el.id == h %}
+                        <div class="alert-warning">
+                            <h3>{{ el.performance_id.name }}</h3>
+                            <h5>Author: {{ el.performance_id.author }}</h5>
+                            <p>{{ el.performance_id.description }}</p>
+                            <p>Date: {{ el.date }}</p>
+                            <p>Duration: {{ el.performance_id.duration }}</p>
+                            <p>Price: {{ el.performance_id.price }}</p>
+                            <p><a href="{% url 'ticketStore_performance' el.id %}"><button class="btn btn-warning">Buy tickets</button></a></p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
         {% else %}
-            <p>no performances yet</p>
+            <p>no hot performances yet</p>
         {% endif %}
     </div>
 
