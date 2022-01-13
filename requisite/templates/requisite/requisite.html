@@ -1,22 +1,24 @@
 {% extends 'base_admin.html' %}
 
 {% block title %}Requisite list{% endblock %}
-
-{% block header %}<a style="color: #fff" href="{% url 'req_home' %}">Requisite</a>{% endblock %}
-
+{% if not valid %}
+    {% block header %}<a style="color: #fff" href="{% url 'req_home' %}">Requisite</a>{% endblock %}
+{% endif %}
 {% block content %}
 <h4 align="center" class="lead">Requisite list</h4>
+<br>
 <form method="get" style="color: #fff">
     Type {{typeFilter.form.requisite_type_id}}
     <button class="btn btn-primary" type="submit">Search</button>
 </form>
-<p><a href="{% url 'create_requisite' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add requisite</button></a></p>
+<br>
+<p><a href="{% url 'create_requisite' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add requisite</button></a></p>
 <table class="table table-hover">
     <div>
         <tr style="color: #CDBEA7">
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Type</th>
+            <th scope="col"><a style="color: #fff" href="{% url 'requisite_filter' 1 %}" >ID</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'requisite_filter' 2 %}" >Name</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'requisite_filter' 3 %}" >Type</a></th>
             <th></th><th></th>
         </tr>
     </div>

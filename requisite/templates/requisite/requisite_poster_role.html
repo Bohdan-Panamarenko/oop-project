@@ -6,30 +6,32 @@
 
 {% block content %}
 <h4 align="center" class="lead">Requisite and roles</h4>
+<br>
 <form method="get" style="color: #fff">
     Requisite {{requisiteFilter.form.requisite_id}}
     <button class="btn btn-primary" type="submit">Search</button>
 </form>
-<p><a href="{% url 'create_requisite_role' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add record</button></a></p>
-
+<br>
+<p><a href="{% url 'create_requisite_role' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add record</button></a></p>
+<br>
 <table class="table table-bordered table-hover">
     <div>
         <tr style="text-align:center; color: #CDBEA7;">
-        <th scope="col" colspan="2">Requisite</th>
-        <th scope="col" colspan="2">Role</th>
-        <th scope="col" colspan="3">Performance</th>
-        <th scope="col" colspan="2"></th>
+        <th style="color: #fff" scope="col" colspan="2">Requisite</th>
+        <th style="color: #fff" scope="col" colspan="2">Role</th>
+        <th style="color: #fff" scope="col" colspan="3">Performance</th>
+        <th style="color: #fff" scope="col" colspan="2"></th>
         </tr>
         <tr style="text-align:center; color: #CDBEA7;">
-            <th scope="col">Name</th>
-            <th scope="col">ID</th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_pos_role_filter' 1 %}" >Name</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_pos_role_filter' 2 %}" >ID</a></th>
 
-            <th scope="col">Name</th>
-            <th scope="col">ID</th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_pos_role_filter' 3 %}" >Name</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_pos_role_filter' 4 %}" >ID</a></th>
 
-            <th scope="col">Title</th>
-            <th scope="col">ID</th>
-            <th scope="col">Date</th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_pos_role_filter' 5 %}" >Title</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_pos_role_filter' 6 %}" >ID</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_pos_role_filter' 7 %}" >Date</a></th>
             <th></th><th></th>
         </tr>
     </div>

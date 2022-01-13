@@ -6,20 +6,21 @@
 
 {% block content %}
 <h4 align="center" class="lead">Requisite history</h4>
-<form method="get" style="color: #fff">
+<br><br>
+<form method="post" style="color: #fff">
+    {% csrf_token %}
     Requisite {{requisiteFilter.form.requisite_id}}
     Name {{requisiteFilter.form.requisite_id__name}}
     <button class="btn btn-primary" type="submit">Search</button>
 </form>
-<a href="{% url 'sort_requisite_asc'%}"><button class="btn btn-info">ASC</button></a>
-<a href="{% url 'sort_requisite_desc'%}"><button class="btn btn-info">DESC</button></a>
-<p><a href="{% url 'create_requisite_his' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add record</button></a></p>
+<br>
+<p><a href="{% url 'create_requisite_his' %}"><button class="btn btn-info">Add record</button></a></p>
 <table class="table table-hover">
     <div>
         <tr style="color: #CDBEA7">
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Description</th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_his_filter' 1 %}" >Name</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_his_filter' 2 %}">Price</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'req_his_filter' 3 %}">Description</a></th>
             <th></th>
         </tr>
     </div>

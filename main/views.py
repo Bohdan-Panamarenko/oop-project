@@ -11,6 +11,8 @@ def main(request):
 
 def authorization(request):
     error = ''
+    request.session['position'] = None
+    request.session['employee_id'] = None
     if request.method == "POST":
         error = 'Wrong values!'
         form = EmployeeForm(request.POST)
@@ -27,10 +29,9 @@ def authorization(request):
                 response = render(request, 'roles_employee.html', {'employee': el.employee_id})
                 request.session['position'] = position
                 request.session['employee_id'] = el.employee_id_id
-                if position == 2:
-                    return render(request, 'admin_main.html', {'employee': el.employee_id})
-                if position == 1:
-                    return render(request, 'employee_main.html', {'employee': el.employee_id})
+                if position != 1:
+                    return render(request, 'admin_main.html', {'employee': el.employee_id, 'data':position})
+                return render(request, 'employee_main.html', {'employee': el.employee_id_id, 'data':position})
     form = EmployeeForm()
     data = {
         'form': form,

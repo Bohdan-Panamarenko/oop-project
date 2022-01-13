@@ -163,10 +163,10 @@ def performance_filter(request, pk):
     return render(request, 'ticketStore/ticketStore_main.html', {'poster': poster, 'myFilter': myFilter})
 
 def ordersList(request):
-    if request.session['position'] != 2:
+    if request.session['position'] != 2 and request.session['position'] != 7:
         return redirect('authorization')
     orders = Order.objects.all()
-    return render(request, 'ticketStore/orders_list.html', {'orders': orders})
+    return render(request, 'ticketStore/orders_list.html', {'orders': orders, 'data': request.session['position']})
 
 
 class OrdersDeleteView(DeleteView):

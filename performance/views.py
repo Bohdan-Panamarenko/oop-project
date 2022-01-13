@@ -7,19 +7,21 @@ from ticketStore.models import Ticket
 
 
 def main(request):
-    if request.session['position'] != 2:
+    if request.session['position'] != 2 and request.session['position'] != 6:
         return redirect('authorization')
-    return render(request, 'performance/main.html')
+    return render(request, 'performance/main.html', {'data': request.session['position']})
 
 
 def performance(request):
-    if request.session['position'] != 2:
+    if request.session['position'] != 2 and request.session['position'] != 6:
         return redirect('authorization')
     performances = Performance.objects.all()
-    return render(request, 'performance/performance.html', {'performances': performances})
+    return render(request, 'performance/performance.html', {'performances': performances, 'data': request.session['position']})
 
 
 def sort_performance(request, pk):
+    if request.session['position'] != 2 and request.session['position'] != 6:
+        return redirect('authorization')
     performances = Performance.objects.all()
     if pk == 1:
         performances = performances.order_by('name')
@@ -34,11 +36,11 @@ def sort_performance(request, pk):
     elif pk == 6:
         performances = performances.order_by('author').reverse()
 
-    return render(request, "performance/performance.html", {"performances": performances})
+    return render(request, "performance/performance.html", {"performances": performances, 'data': request.session['position']})
 
 
 def create_performance(request):
-    if request.session['position'] != 2:
+    if request.session['position'] != 2 and request.session['position'] != 6:
         return redirect('authorization')
     form = PerformanceForm()
     error = ''
@@ -52,7 +54,8 @@ def create_performance(request):
 
     data = {
         'form': form,
-        'error': error
+        'error': error,
+        'data': request.session['position']
     }
     return render(request, 'performance/create_performance.html', data)
 
@@ -77,13 +80,15 @@ class PerformanceDeleteView(DeleteView):
 
 
 def performance_on_going(request):
-    if request.session['position'] != 2:
+    if request.session['position'] != 2 and request.session['position'] != 6:
         return redirect('authorization')
     poster = Poster.objects.all()
-    return render(request, 'performance/performance_on_going.html', {'poster': poster})
+    return render(request, 'performance/performance_on_going.html', {'poster': poster, 'data': request.session['position']})
 
 
 def sort_performance_on_going(request, pk):
+    if request.session['position'] != 2 and request.session['position'] != 6:
+        return redirect('authorization')
     posters = Poster.objects.all()
     if pk == 1:
         posters = posters.order_by('date')
@@ -102,7 +107,7 @@ def sort_performance_on_going(request, pk):
     elif pk == 8:
         posters = posters.order_by('performance_id__author').reverse()
 
-    return render(request, "performance/performance_on_going.html", {"poster": posters})
+    return render(request, "performance/performance_on_going.html", {"poster": posters, 'data': request.session['position']})
 
 
 def create_tickets(poster: Poster):
@@ -122,6 +127,8 @@ def create_tickets(poster: Poster):
 
 
 def create_performance_on_going(request):
+    if request.session['position'] != 2 and request.session['position'] != 6:
+        return redirect('authorization')
     form = PerformanceOnGoingForm()
     error = ''
     if request.method == "POST":
@@ -135,7 +142,8 @@ def create_performance_on_going(request):
 
     data = {
         'form': form,
-        'error': error
+        'error': error,
+        'data': request.session['position']
     }
     return render(request, 'performance/create_performance_on_going.html', data)
 

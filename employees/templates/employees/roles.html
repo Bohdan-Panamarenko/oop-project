@@ -18,29 +18,17 @@
         <input type="text" name="fee" class="form-control" placeholder="Fee"><br>
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </form>
-</div>
-<p><a href="{% url 'create_role' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add role</button></a></p>
-<p><a href="{% url 'sort_roles_id_asc' %}"><button>Id asc</button></a>
-    <a href="{% url 'sort_roles_id_desc' %}"><button>Id desc</button></a>
-<a href="{% url 'sort_roles_name_asc' %}"><button>Name asc</button></a>
-    <a href="{% url 'sort_roles_name_desc' %}"><button>Name desc</button></a>
-<a href="{% url 'sort_roles_surname_asc' %}"><button>Surname asc</button></a>
-    <a href="{% url 'sort_roles_surname_desc' %}"><button>Surname desc</button></a>
-<a href="{% url 'sort_roles_role_asc' %}"><button>Role asc</button></a>
-    <a href="{% url 'sort_roles_role_desc' %}"><button>Role desc</button></a>
-<a href="{% url 'sort_roles_performance_asc' %}"><button>Performance asc</button></a>
-    <a href="{% url 'sort_roles_performance_desc' %}"><button>Performance desc</button></a>
-<a href="{% url 'sort_roles_fee_asc' %}"><button>Fee asc</button></a>
-    <a href="{% url 'sort_roles_fee_desc' %}"><button>Fee desc</button></a>
+</div><br>
+<p><a href="{% url 'create_role' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add role</button></a>
 <table class="table table-hover">
     <div>
         <tr style="color: #CDBEA7">
-            <th scope="col">ID</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
-            <th scope="col">Performance</th>
-            <th scope="col">Fee</th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_roles' 1 %}" >ID</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_roles' 2 %}" >Surname</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_roles' 3 %}" >Name</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_roles' 4 %}" >Role</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_roles' 5 %}" >Performance</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_roles' 6 %}" >Fee</a></th>
         </tr>
     </div>
     {% for el in roles %}

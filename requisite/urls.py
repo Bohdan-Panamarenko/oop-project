@@ -18,6 +18,7 @@ urlpatterns = [
     path('requisite/<int:pk>/update/', views.RequisiteUpdateView.as_view(), name='requisite_update'),
     path('requisite_poster_role/<int:pk>/update/', views.RequisiteRoleUpdateView.as_view(),
                                                                                         name='requisite_role_update'),
-    path('sort_requisite_asc/', views.sort_requisite_asc, name='sort_requisite_asc'),
-    path('sort_requisite_desc/', views.sort_requisite_desc, name='sort_requisite_desc'),
+    path('requisite/filter/<int:pk>', views.filter_requisite, name='requisite_filter'),
+    path('requisite_history/filter/<int:pk>', views.filter_req_his, name='req_his_filter'),
+    path('requisite_poster_role/filter/<int:pk>', views.filter_req_pos_role, name='req_pos_role_filter'),
 ]

@@ -16,26 +16,16 @@
         <input type="text" name="position" class="form-control" placeholder="Position"><br>
         <button type="submit" name="submit" class="btn btn-primary">Search</button>
     </form>
-</div>
-<p><a href="{% url 'create_hiring' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add hiring</button></a></p>
-<p><a href="{% url 'sort_hiring_id_asc' %}"><button>Id asc</button></a>
-    <a href="{% url 'sort_hiring_id_desc' %}"><button>Id desc</button></a>
-    <a href="{% url 'sort_hiring_name_asc' %}"><button>Name asc</button></a>
-    <a href="{% url 'sort_hiring_name_desc' %}"><button>Name desc</button></a>
-    <a href="{% url 'sort_hiring_surname_asc' %}"><button>Surname asc</button></a>
-    <a href="{% url 'sort_hiring_surname_desc' %}"><button>Surname desc</button></a>
-    <a href="{% url 'sort_hiring_position_asc' %}"><button>Position asc</button></a>
-    <a href="{% url 'sort_hiring_position_desc' %}"><button>Position desc</button></a>
-<a href="{% url 'sort_hiring_date_asc' %}"><button>Date asc</button></a>
-    <a href="{% url 'sort_hiring_date_desc' %}"><button>Date desc</button></a></p>
+</div><br>
+<p><a href="{% url 'create_hiring' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add hiring</button></a>
 <table class="table table-hover">
     <div>
         <tr style="color: #CDBEA7">
-            <th scope="col">ID</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Name</th>
-            <th scope="col">Position</th>
-            <th scope="col">Hiring Date</th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_hiring' 1 %}" >ID</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_hiring' 2 %}" >Surname</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_hiring' 3 %}" >Name</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_hiring' 4 %}" >Position</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_hiring' 5 %}" >Hiring Date</a></th>
         </tr>
     </div>
     {% for el in hiring %}

@@ -1,0 +1,21 @@
+{% extends 'base_employee.html' %}
+
+
+{% block content %}
+
+<form method="post">
+        <div style="left:40%; position:fixed; font-size:18px">
+        {% csrf_token %}
+        Id: {{ employee.id }}<br><br>
+        Full name: {{ employee.first_name }} {{ employee.last_name }} {{ employee.patronymic }}<br><br>
+        Phone: {{ employee.phone }}<br><br>
+        Work book: {{ employee.work_book }}<br><br>
+        Email: {{ employee.email }}<br><br>
+        Address: {{ employee.address }}<br><br>
+        Date of birth: {{ employee.date_of_birth }}<br><br>
+        <span>{{ error }}</span>
+                <a href="{% url 'update_employee' employee.id %}" class="btn btn-info">Edit</a>
+                <a href="{% url 'delete_employee' employee.id %}" class="btn btn-danger">Delete</a>
+            </div>
+    </form>
+{% endblock %}

@@ -15,17 +15,13 @@
         <input type="text" name="position" class="form-control" placeholder="Position"><br>
         <button type="submit" name="submit" class="btn btn-primary">Search</button>
     </form>
-</div>
-<p><a href="{% url 'create_position' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add position</button></a></p>
-<p><a href="{% url 'sort_positions_id_asc' %}"><button>Id asc</button></a>
-    <a href="{% url 'sort_positions_id_desc' %}"><button>Id desc</button></a>
-<a href="{% url 'sort_positions_name_asc' %}"><button>Name asc</button></a>
-    <a href="{% url 'sort_positions_name_desc' %}"><button>Name desc</button></a></p>
+</div><br>
+<p><a href="{% url 'create_position' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add position</button></a>
 <table class="table table-hover">
     <div>
         <tr style="color: #CDBEA7">
-            <th scope="col">ID</th>
-            <th scope="col">Position</th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_positions' 1 %}" >ID</a></th>
+            <th scope="col"><a style="color: #fff" href="{% url 'filter_positions' 2 %}" >Position</a></th>
         </tr>
     </div>
     {% for el in positions %}

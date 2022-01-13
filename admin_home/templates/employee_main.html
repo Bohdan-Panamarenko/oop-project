@@ -1,14 +1,13 @@
 {% extends 'base_employee.html' %}
 {% block title %}Employee{% endblock %}
-{% block header %}Employee{% endblock %}
 {% block content %}<div>
     <main class="text-center" >
     <p class="lead">Menu</p>
         <p></p>
-        <div><a class="menu_link" href="{% url 'employee_info' employee.id %}" class="btn-link">Information</a></div>
-        <div><a class="menu_link" href="{% url 'salary' employee.id %}" class="btn-link">Salary</a></div>
-        <div><a class="menu_link" href="{% url 'roles_employee' employee.id %}" class="btn-link">Roles</a></div>
-        <div><a class="menu_link" href="{% url 'requisite_employee' employee.id %}" class="btn-link">Requisite</a></div>
+        <div><a class="menu_link" href="{% url 'info_employee' employee %}" class="btn-link">Information</a></div>
+        <div><a class="menu_link" href="{% url 'salary' employee %}" class="btn-link">Salary</a></div>
+        <div><a class="menu_link" href="{% url 'roles_employee' employee %}" class="btn-link">Roles</a></div>
+        <div><a class="menu_link" href="{% url 'requisite_employee' employee %}" class="btn-link">Requisite</a></div>
   </main>
 </div>
 {% endblock %}

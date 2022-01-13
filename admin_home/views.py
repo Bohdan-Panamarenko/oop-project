@@ -1,19 +1,36 @@
 from django.shortcuts import render, redirect
-from django.db.models.functions import TruncMonth, ExtractMonth, ExtractYear
-from django.contrib.auth.decorators import login_required
-from django.db.models import Sum, DateField
-import datetime
+from django.views.generic import DetailView, UpdateView, DeleteView
 
 from django.utils.datetime_safe import strftime
 
-from employees.models import Role
+from employees.models import Role, Employee
 from requisite.models import RequisitePosterRole
+from employees.forms import EmployeeForm
 
 
 def admin(request):
-    if request.session['position_id'] != 2:
+    if request.session['position'] != 2:
         return redirect('authorization')
     return render(request, 'admin_main.html')
+
+
+class EmployeeDetailView(DetailView):
+    model = Employee
+    template_name = 'info_employee.html'
+    context_object_name = 'employee'
+
+
+class EmployeeUpdateView(UpdateView):
+    model = Employee
+    template_name = 'update_employee.html'
+
+    form_class = EmployeeForm
+
+
+class EmployeeDeleteView(DeleteView):
+    model = Employee
+    template_name = 'delete_employee.html'
+    success_url = ''
 
 
 def requisite_employee(request, pk):
@@ -52,4 +69,5 @@ def salary(request, pk):
 
 
 def employee_main(request):
-    return render(request, 'employee_main.html')
+    position = request.session['employee_id']
+    return render(request, 'employee_main.html', {'employee': position})
