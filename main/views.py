@@ -35,6 +35,6 @@ def authorization(request):
     form = EmployeeForm()
     data = {
         'form': form,
-        'error': error
+        'error': 'Wrong values!'
     }
     return render(request, 'authorization.html', data)
