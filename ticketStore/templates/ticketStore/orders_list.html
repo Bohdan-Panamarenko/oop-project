@@ -6,10 +6,12 @@
 
 {% block content %}
 <h4 align="center" class="lead">Orders</h4>
-{# <form method="get" style="color: #fff">#}
-    {#Type {{typeFilter.form.requisite_type_id}}#}
-    {#<button class="btn btn-primary" type="submit">Search</button>#}
-{#</form> #}
+<form method="post" style="color: #fff">
+    {% csrf_token %}
+    Phone {{orderFilter.form.phone}}
+    Mail {{orderFilter.form.mail}}
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
 {# <p><a href="{% url 'create_requisite' %}"><li></li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add requisite</button></a></p> #}
 <table class="table table-hover">
     <div>
